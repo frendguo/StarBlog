@@ -1,0 +1,152 @@
+src/app/admin/_components/CommentRowActions.tsx
+  29db5309a7487d6b 1-62
+src/app/now/page.tsx
+  29db5309a7487d6b 1-133
+src/app/writing/_components/WritingFilter.tsx
+  29db5309a7487d6b 1-64
+src/app/not-found.tsx
+  29db5309a7487d6b 1-21
+src/components/HeroTerminal.tsx
+  29db5309a7487d6b 1-61
+src/middleware.ts
+  29db5309a7487d6b 1-43
+src/app/admin/tags/TagsClient.tsx
+  29db5309a7487d6b 1-310
+next.config.ts
+  29db5309a7487d6b 1-13
+src/lib/client-events.ts
+  29db5309a7487d6b 1-18
+src/app/projects/page.tsx
+  29db5309a7487d6b 1-124
+src/app/admin/layout.tsx
+  29db5309a7487d6b 1-15
+src/app/admin/login/page.tsx
+  29db5309a7487d6b 1-139
+.gitignore
+  29db5309a7487d6b 1-54
+src/components/ThemeBootstrap.tsx
+  29db5309a7487d6b 1-9
+src/components/HoverList.tsx
+  29db5309a7487d6b 1-43
+src/app/admin/_components/PostRowActions.tsx
+  29db5309a7487d6b 1-87
+src/app/actions/newsletter.ts
+  29db5309a7487d6b 1-23
+src/app/writing/_components/TocSidebar.tsx
+  29db5309a7487d6b 1-166
+src/components/Hotkeys.tsx
+  29db5309a7487d6b 1-55
+README.md
+  29db5309a7487d6b 2-113
+src/db/index.ts
+  29db5309a7487d6b 1-14
+src/components/TopNav.tsx
+  29db5309a7487d6b 1-107
+src/app/admin/posts/[id]/page.tsx
+  29db5309a7487d6b 1-43
+src/lib/markdown.ts
+  29db5309a7487d6b 1-60
+src/app/admin/_components/AdminShell.tsx
+  29db5309a7487d6b 1-108
+src/app/actions/comments.ts
+  29db5309a7487d6b 1-21
+src/app/admin/posts/new/page.tsx
+  29db5309a7487d6b 1-28
+src/db/schema.ts
+  29db5309a7487d6b 1-117
+src/app/robots.ts
+  29db5309a7487d6b 1-11
+src/app/page.tsx
+  29db5309a7487d6b 1-503
+src/app/about/page.tsx
+  29db5309a7487d6b 1-89
+package.json
+  29db5309a7487d6b 1-50
+drizzle.config.ts
+  29db5309a7487d6b 1-13
+src/lib/site-config.ts
+  29db5309a7487d6b 1-35
+src/components/NewsletterForm.tsx
+  29db5309a7487d6b 1-73
+src/app/writing/[slug]/page.tsx
+  29db5309a7487d6b 1-315
+src/app/writing/page.tsx
+  29db5309a7487d6b 1-164
+src/app/actions/posts.ts
+  29db5309a7487d6b 1-139
+src/lib/format.ts
+  29db5309a7487d6b 1-46
+scripts/generate-seed.mjs
+  29db5309a7487d6b 1-347
+src/app/admin/comments/page.tsx
+  29db5309a7487d6b 1-131
+wrangler.jsonc
+  29db5309a7487d6b 1-41
+src/lib/seed-data.ts
+  29db5309a7487d6b 1-308
+src/app/writing/_components/ArticleProgress.tsx
+  29db5309a7487d6b 1-43
+src/app/feed.xml/route.ts
+  29db5309a7487d6b 1-60
+src/app/actions/tags.ts
+  29db5309a7487d6b 1-57
+src/app/admin/tags/page.tsx
+  29db5309a7487d6b 1-9
+src/app/admin/subscribers/page.tsx
+  29db5309a7487d6b 1-118
+src/components/SearchPalette.tsx
+  29db5309a7487d6b 1-305
+src/app/actions/auth.ts
+  29db5309a7487d6b 1-51
+src/app/admin/page.tsx
+  29db5309a7487d6b 1-289
+src/app/admin/posts/page.tsx
+  29db5309a7487d6b 1-219
+.dev.vars.example
+  29db5309a7487d6b 1-10
+eslint.config.mjs
+  29db5309a7487d6b 1-15
+src/components/HeroCounters.tsx
+  29db5309a7487d6b 1-57
+scripts/hash-password.mjs
+  29db5309a7487d6b 1-38
+drizzle/migrations/0000_init.sql
+  29db5309a7487d6b 21
+open-next.config.ts
+  29db5309a7487d6b 1-3
+src/app/layout.tsx
+  29db5309a7487d6b 1-84
+src/app/admin/_components/PostEditor.tsx
+  29db5309a7487d6b 1-444,454-463
+src/lib/posts.ts
+  29db5309a7487d6b 1-136
+src/app/sitemap.ts
+  29db5309a7487d6b 1-32
+tsconfig.json
+  29db5309a7487d6b 1-29
+src/lib/auth.ts
+  29db5309a7487d6b 1-103
+src/app/admin/settings/page.tsx
+  29db5309a7487d6b 1-131
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.10",
+  "base_commit_sha": "01e4e3e45444e028c97d618c2b34044bd6ebfb64",
+  "prompts": {
+    "29db5309a7487d6b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4702fcf9-b711-4edf-be20-bbb3d1a5b228",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 6698,
+      "total_deletions": 120,
+      "accepted_lines": 6559,
+      "overriden_lines": 4,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/7f6f96e19f032e8950b9e56ceee562602d4df32af8ae594e2d903cf79af728b1"
+    }
+  }
+}
