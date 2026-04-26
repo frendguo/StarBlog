@@ -1,0 +1,41 @@
+/**
+ * Cloudflare Workers + OpenNext.js configuration
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "starblog",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
+
+  "observability": {
+    "enabled": true
+  },
+
+  "vars": {
+    "SITE_URL": "https://frendguo.com"
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "starblog-db",
+      "database_id": "REPLACE_WITH_REAL_ID_AFTER_wrangler_d1_create",
+      "migrations_dir": "drizzle/migrations"
+    }
+  ]
+
+  // Future bindings — uncomment when needed:
+  // "kv_namespaces": [
+  //   { "binding": "SESSIONS", "id": "REPLACE_KV_ID" }
+  // ],
+  // "r2_buckets": [
+  //   { "binding": "MEDIA", "bucket_name": "starblog-media" }
+  // ]
+}

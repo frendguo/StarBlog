@@ -1,0 +1,503 @@
+import Link from "next/link";
+import { fmtDate, fmtMonthDay } from "@/lib/format";
+import { getAllPosts, getAllTags } from "@/lib/posts";
+import { siteConfig } from "@/lib/site-config";
+import { HeroCounters } from "@/components/HeroCounters";
+import { HeroTerminal } from "@/components/HeroTerminal";
+import { HoverRow } from "@/components/HoverList";
+import { NewsletterForm } from "@/components/NewsletterForm";
+
+const NOW_SUMMARY = "shipping wcap v2 · writing PDB series #2";
+
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const posts = await getAllPosts({ status: "published" });
+  const tags = await getAllTags();
+  const featured = posts.find((p) => p.pinned) ?? posts[0];
+  const recent = posts.filter((p) => p.slug !== featured?.slug).slice(0, 5);
+  const totalWords = posts.reduce((s, p) => s + p.words, 0);
+
+  return (
+    <div>
+      {/* HERO */}
+      <section className="hero" style={{ textAlign: "center" }}>
+        <div
+          className="ambient"
+          style={{
+            width: 360,
+            height: 360,
+            background: "#FFD9C4",
+            top: -120,
+            left: "50%",
+            marginLeft: -300,
+          }}
+        />
+        <div
+          className="ambient"
+          style={{
+            width: 280,
+            height: 280,
+            background: "#FFF0AC",
+            top: 80,
+            right: "12%",
+          }}
+        />
+
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+            maxWidth: 760,
+            margin: "0 auto",
+          }}
+        >
+          <span className="hero-greeting">
+            <span className="wave">👋</span> 你好，我是 {siteConfig.author.name} ·{" "}
+            {siteConfig.author.location}
+          </span>
+          <h1 className="hero-title" style={{ textAlign: "center" }}>
+            <span className="underline">写代码</span>，读源码，
+            <br />
+            以及一些 <span className="accent">关于写代码</span>
+            <br />
+            的文字。
+          </h1>
+          <p
+            className="hero-lede"
+            style={{ margin: "0 auto 32px", textAlign: "center" }}
+          >
+            我是一个软件工程师，专注于 C++ 和 Windows 平台。 这里记录我的调试日记、源码拆解，
+            以及最近开始痴迷的 AI 工程化 — 慢但认真，每周大约一篇。
+          </p>
+          <div className="hero-cta" style={{ justifyContent: "center" }}>
+            <Link className="btn btn-primary" href="/writing">
+              浏览所有文章 <span>→</span>
+            </Link>
+            <Link className="btn" href="/about">
+              关于我
+            </Link>
+            <Link className="btn btn-ghost" href="/feed.xml">
+              ⌁ RSS
+            </Link>
+          </div>
+
+          <HeroCounters
+            posts={posts.length}
+            words={totalWords}
+            years={siteConfig.yearsWriting}
+          />
+        </div>
+
+        <HeroTerminal postCount={posts.length} nowSummary={NOW_SUMMARY} />
+      </section>
+
+      {/* FEATURED */}
+      {featured && (
+        <section
+          style={{ maxWidth: 1100, margin: "40px auto 0", padding: "0 32px" }}
+        >
+          <div className="section-label">
+            <span style={{ color: "var(--accent)" }}>★</span> Featured
+          </div>
+          <Link
+            href={`/writing/${featured.slug}`}
+            className="featured-hero"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 240px",
+              gap: 32,
+              padding: 32,
+              borderRadius: 16,
+              background:
+                "linear-gradient(135deg, var(--bg-tint-1) 0%, var(--bg-tint-5) 100%)",
+              border: "1px solid var(--rule)",
+              cursor: "pointer",
+              transition: "transform .25s ease",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 10,
+                  alignItems: "center",
+                  marginBottom: 14,
+                }}
+              >
+                <span className={`tag ${featured.tagId}`}>{featured.tagLabel}</span>
+                {featured.series && (
+                  <span
+                    style={{
+                      fontFamily: "var(--mono)",
+                      fontSize: 11,
+                      color: "var(--ink-3)",
+                    }}
+                  >
+                    SERIES · {featured.series}
+                  </span>
+                )}
+              </div>
+              <h3
+                style={{
+                  fontFamily: "var(--serif)",
+                  fontSize: 30,
+                  fontWeight: 600,
+                  lineHeight: 1.15,
+                  marginBottom: 14,
+                  letterSpacing: "-0.018em",
+                }}
+              >
+                {featured.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: "var(--serif)",
+                  fontSize: 17,
+                  color: "var(--ink-2)",
+                  lineHeight: 1.55,
+                  marginBottom: 16,
+                }}
+              >
+                {featured.excerpt}
+              </p>
+              <div
+                style={{
+                  fontFamily: "var(--mono)",
+                  fontSize: 12,
+                  color: "var(--ink-3)",
+                }}
+              >
+                {featured.publishedAt ? fmtDate(featured.publishedAt) : ""} ·{" "}
+                {featured.readTime} min read · 继续阅读 →
+              </div>
+            </div>
+            <div
+              className="featured-side"
+              style={{
+                background: "#fff",
+                borderRadius: 12,
+                padding: 20,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                border: "1px solid rgba(0,0,0,.06)",
+                fontFamily: "var(--mono)",
+                fontSize: 11.5,
+              }}
+            >
+              <div>
+                <div style={{ color: "#999", marginBottom: 8 }}>{"// in this piece"}</div>
+                <div style={{ color: "#666", lineHeight: 1.7 }}>
+                  <div>
+                    · <span style={{ color: "#FF5722" }}>promise_type</span>
+                  </div>
+                  <div>
+                    · <span style={{ color: "#2563EB" }}>coroutine_handle</span>
+                  </div>
+                  <div>· symmetric transfer</div>
+                  <div>· HALO 优化</div>
+                  <div>· MSVC 19.40 实测</div>
+                </div>
+              </div>
+              <div style={{ marginTop: 16, color: "#aaa", fontSize: 10 }}>
+                {featured.words.toLocaleString()} words
+              </div>
+            </div>
+          </Link>
+        </section>
+      )}
+
+      {/* RECENT */}
+      <section
+        style={{ maxWidth: 1100, margin: "64px auto 0", padding: "0 32px" }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            marginBottom: 22,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--mono)",
+              fontSize: 11,
+              letterSpacing: "0.14em",
+              color: "var(--ink-4)",
+              textTransform: "uppercase",
+            }}
+          >
+            § Recent writing
+          </span>
+          <div style={{ flex: 1, height: 1, background: "var(--rule)" }} />
+          <Link
+            className="btn btn-ghost"
+            style={{ fontSize: 12, padding: "4px 10px" }}
+            href="/writing"
+          >
+            View all {posts.length} →
+          </Link>
+        </div>
+        <div>
+          {recent.map((p) => (
+            <HoverRow
+              key={p.slug}
+              href={`/writing/${p.slug}`}
+              className="recent-row"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "92px 1fr 100px 60px",
+                gap: 20,
+                padding: "18px 16px",
+                borderBottom: "1px solid var(--rule)",
+                cursor: "pointer",
+                alignItems: "center",
+                borderRadius: 10,
+                transition: "background .15s, transform .15s",
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: "var(--mono)",
+                  fontSize: 11,
+                  color: "var(--ink-4)",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                {p.publishedAt ? fmtMonthDay(p.publishedAt) : ""}
+              </div>
+              <div>
+                <h4
+                  style={{
+                    fontFamily: "var(--serif)",
+                    fontSize: 19,
+                    fontWeight: 500,
+                    marginBottom: 4,
+                    letterSpacing: "-0.005em",
+                  }}
+                >
+                  {p.title}
+                </h4>
+                <p
+                  style={{
+                    fontFamily: "var(--serif)",
+                    fontSize: 14,
+                    color: "var(--ink-3)",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {p.excerpt.slice(0, 92)}…
+                </p>
+              </div>
+              <span className={`tag ${p.tagId}`} style={{ justifySelf: "start" }}>
+                {p.tagLabel}
+              </span>
+              <span
+                style={{
+                  fontFamily: "var(--mono)",
+                  fontSize: 11,
+                  color: "var(--ink-4)",
+                  textAlign: "right",
+                }}
+              >
+                {p.readTime}m →
+              </span>
+            </HoverRow>
+          ))}
+        </div>
+      </section>
+
+      {/* TOPICS strip */}
+      <section
+        style={{ maxWidth: 1100, margin: "80px auto 0", padding: "0 32px" }}
+      >
+        <div
+          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}
+        >
+          <div>
+            <div className="section-label">
+              <span>#</span> Topics
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {tags.map((t) => (
+                <Link
+                  key={t.id}
+                  href={`/writing?tag=${t.id}`}
+                  className={`tag ${t.id}`}
+                  style={{
+                    cursor: "pointer",
+                    padding: "6px 12px",
+                    fontSize: 12.5,
+                  }}
+                >
+                  #{t.label}
+                  <span style={{ marginLeft: 4, opacity: 0.55 }}>{t.count}</span>
+                </Link>
+              ))}
+            </div>
+            <p
+              style={{
+                marginTop: 16,
+                fontFamily: "var(--serif)",
+                fontSize: 14,
+                color: "var(--ink-3)",
+                lineHeight: 1.5,
+              }}
+            >
+              这五个标签覆盖了我所有的写作范围。 点开任意一个都可以筛选对应文章。
+            </p>
+          </div>
+          <div>
+            <div className="section-label">
+              <span>◌</span> Now
+            </div>
+            <div
+              className="card now-card"
+              style={{
+                padding: 22,
+                background: "var(--bg-tint-3)",
+                border: "1px solid rgba(0,0,0,.06)",
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: "var(--mono)",
+                  fontSize: 11,
+                  color: "var(--accent-3)",
+                  marginBottom: 8,
+                }}
+              >
+                ● UPDATED 4 DAYS AGO
+              </div>
+              <p
+                style={{
+                  fontFamily: "var(--serif)",
+                  fontSize: 15.5,
+                  color: "var(--ink-2)",
+                  lineHeight: 1.55,
+                  marginBottom: 12,
+                }}
+              >
+                正在写 <strong>PDB 逆向系列</strong> 的第二篇，关于 TPI Stream。 同时在做{" "}
+                <code
+                  style={{
+                    background: "var(--bg-card)",
+                    padding: "1px 6px",
+                    borderRadius: 3,
+                    fontSize: 13,
+                    fontFamily: "var(--mono)",
+                    border: "1px solid var(--rule)",
+                  }}
+                >
+                  wcap v2
+                </code>
+                ，把 Win32 异步 API 全包装成可 await 的协程。
+              </p>
+              <Link
+                href="/now"
+                className="btn btn-ghost"
+                style={{ fontSize: 12, padding: "4px 10px" }}
+              >
+                查看完整 Now 页 →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NEWSLETTER */}
+      <section
+        style={{ maxWidth: 1100, margin: "80px auto 0", padding: "0 32px" }}
+      >
+        <div
+          className="newsletter-band"
+          style={{
+            background: "#16161A",
+            color: "#FBF9F4",
+            borderRadius: 20,
+            padding: "40px 40px",
+            display: "grid",
+            gridTemplateColumns: "1fr 320px",
+            gap: 32,
+            alignItems: "center",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              right: -40,
+              top: -40,
+              width: 200,
+              height: 200,
+              borderRadius: "50%",
+              background: "rgba(255,87,34,.15)",
+              filter: "blur(40px)",
+            }}
+          />
+          <div style={{ position: "relative" }}>
+            <div
+              style={{
+                fontFamily: "var(--mono)",
+                fontSize: 11,
+                color: "var(--accent)",
+                letterSpacing: "0.16em",
+                marginBottom: 10,
+              }}
+            >
+              NEWSLETTER · 每月一封
+            </div>
+            <h3
+              style={{
+                fontFamily: "var(--serif)",
+                fontSize: 28,
+                fontWeight: 600,
+                marginBottom: 10,
+                letterSpacing: "-0.015em",
+              }}
+            >
+              新文章上线第一时间送到你邮箱
+            </h3>
+            <p
+              style={{
+                fontSize: 14.5,
+                color: "rgba(255,255,255,.7)",
+                lineHeight: 1.55,
+              }}
+            >
+              不会发广告，不会卖东西。只是文章更新提醒 + 一些没发到博客上的零散思考。随时可退订。
+            </p>
+          </div>
+          <NewsletterForm subscriberCount={siteConfig.newsletterCount} />
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer
+        style={{
+          maxWidth: 1100,
+          margin: "80px auto 0",
+          padding: 32,
+          borderTop: "1px solid var(--rule)",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          fontFamily: "var(--mono)",
+          fontSize: 11.5,
+          color: "var(--ink-4)",
+        }}
+      >
+        <span>© {new Date().getFullYear()} {siteConfig.author.name} · built with care</span>
+        <span>
+          v3.0 · last deploy <span style={{ color: "var(--accent-3)" }}>●</span>{" "}
+          on Cloudflare
+        </span>
+      </footer>
+    </div>
+  );
+}

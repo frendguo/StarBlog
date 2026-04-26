@@ -1,0 +1,10 @@
+# Local development secrets — copy to .dev.vars and fill in.
+# Wrangler reads .dev.vars during `wrangler dev` / `opennextjs-cloudflare preview`.
+
+# Admin auth (single-admin model)
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD_HASH=replace_me_with_argon2_hash
+AUTH_SECRET=replace_me_with_long_random_string
+
+# Site
+SITE_URL=http://localhost:3000
