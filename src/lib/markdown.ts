@@ -1,4 +1,3 @@
-import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
@@ -11,14 +10,6 @@ const processor = unified()
   .use(remarkGfm)
   .use(remarkRehype, { allowDangerousHtml: false })
   .use(rehypeSlug)
-  .use(rehypePrettyCode, {
-    theme: {
-      light: "github-light",
-      dark: "github-dark-dimmed",
-    },
-    keepBackground: false,
-    defaultLang: "plaintext",
-  })
   .use(rehypeStringify);
 
 export async function renderMarkdown(body: string): Promise<string> {

@@ -26,7 +26,7 @@
     {
       "binding": "DB",
       "database_name": "starblog-db",
-      "database_id": "REPLACE_WITH_REAL_ID_AFTER_wrangler_d1_create",
+      "database_id": "633b1e7c-eb44-43ff-aa44-c7c96c1e0049",
       "migrations_dir": "drizzle/migrations"
     }
   ]

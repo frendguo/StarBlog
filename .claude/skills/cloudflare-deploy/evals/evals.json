@@ -1,0 +1,23 @@
+{
+  "skill_name": "cloudflare-deploy",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我已经把 wrangler.jsonc 和 secrets 都配置好了，帮我把 StarBlog 发布到 Cloudflare。",
+      "expected_output": "先确认生产授权语义，按 lint/build、D1 remote migrate、必要时 seed、OpenNext deploy、线上 smoke test 的顺序执行，并汇报 Worker URL、Version ID 和验证结果。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Cloudflare 部署成功了，但是 workers.dev 首页、/admin/login 和 robots.txt 都是 500，帮我排查。",
+      "expected_output": "先用本地 opennextjs-cloudflare preview 复现，抓 Wrangler runtime 日志；如果看到 middleware-manifest dynamic require，建议仓库级 .npmrc 使用 node-linker=hoisted 和 shamefully-hoist=true，pnpm install 后重新 build/preview/deploy。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "pnpm run deploy 提示 Worker exceeded the size limit of 3 MiB，这个博客怎么处理比较好？",
+      "expected_output": "分析 .open-next bundle 最大来源，重点检查 rehype-pretty-code/shiki full bundle；给出免费计划移除服务端 Shiki、高亮改构建期/客户端、或升级 Workers paid plan 的取舍。",
+      "files": []
+    }
+  ]
+}
