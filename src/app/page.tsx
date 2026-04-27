@@ -411,7 +411,8 @@ export default async function HomePage() {
 
       {/* NEWSLETTER */}
       <section
-        style={{ maxWidth: 1100, margin: "80px auto 0", padding: "0 32px" }}
+        id="newsletter"
+        style={{ maxWidth: 1100, margin: "80px auto 0", padding: "0 32px", scrollMarginTop: 80 }}
       >
         <div
           className="newsletter-band"

@@ -3,8 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fmtDate } from "@/lib/format";
 import { extractToc, renderMarkdown } from "@/lib/markdown";
-import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import { getAllPosts, getApprovedComments, getPostBySlug } from "@/lib/posts";
 import { ArticleProgress } from "../_components/ArticleProgress";
+import { CommentSection } from "../_components/CommentSection";
 import { TocSidebar } from "../_components/TocSidebar";
 
 interface Params {
@@ -45,6 +46,7 @@ export default async function ArticlePage({ params }: Params) {
 
   const html = await renderMarkdown(post.body);
   const toc = extractToc(post.body);
+  const comments = await getApprovedComments(post.id);
 
   return (
     <div>
@@ -252,6 +254,8 @@ export default async function ArticlePage({ params }: Params) {
               <div />
             )}
           </div>
+
+          <CommentSection postId={post.id} initialComments={comments} />
 
           {related.length > 0 && (
             <div style={{ marginTop: 56 }}>

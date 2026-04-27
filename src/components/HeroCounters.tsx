@@ -9,9 +9,15 @@ interface Props {
 }
 
 export function HeroCounters({ posts, words, years }: Props) {
-  const [shown, setShown] = useState({ posts: 0, words: 0, years: 0 });
+  // Initialize with real values so the SSR pass and hidden tabs (where rAF
+  // is throttled to never-fire) both render correctly. The visible-tab
+  // animation resets to 0 below.
+  const [shown, setShown] = useState({ posts, words, years });
 
   useEffect(() => {
+    if (typeof document === "undefined" || document.hidden) return;
+    setShown({ posts: 0, words: 0, years: 0 });
+
     const dur = 900;
     const start = performance.now();
     let raf = 0;

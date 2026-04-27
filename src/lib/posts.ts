@@ -1,7 +1,7 @@
-import { and, desc, eq, sql } from "drizzle-orm";
+import { and, asc, desc, eq, sql } from "drizzle-orm";
 import { cache } from "react";
 import { getDbAsync } from "@/db";
-import { posts, projects, tags } from "@/db/schema";
+import { comments, posts, projects, tags } from "@/db/schema";
 
 export interface PostRow {
   id: number;
@@ -134,3 +134,29 @@ export const getStats = cache(async () => {
     words: totalWords,
   };
 });
+
+export interface CommentRow {
+  id: number;
+  author: string;
+  content: string;
+  createdAt: Date;
+}
+
+export const getApprovedComments = cache(
+  async (postId: number): Promise<CommentRow[]> => {
+    const db = await getDbAsync();
+    const rows = await db
+      .select({
+        id: comments.id,
+        author: comments.author,
+        content: comments.content,
+        createdAt: comments.createdAt,
+      })
+      .from(comments)
+      .where(
+        and(eq(comments.postId, postId), eq(comments.status, "approved"))
+      )
+      .orderBy(asc(comments.createdAt));
+    return rows;
+  }
+);

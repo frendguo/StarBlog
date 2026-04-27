@@ -1,5 +1,6 @@
 "use server";
 
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import {
@@ -14,9 +15,10 @@ export async function login(formData: FormData) {
   const password = String(formData.get("password") ?? "");
   const from = String(formData.get("from") ?? "/admin");
 
-  const expectedUser = process.env.ADMIN_USERNAME ?? "admin";
-  const stored = process.env.ADMIN_PASSWORD_HASH;
-  const secret = process.env.AUTH_SECRET;
+  const { env } = await getCloudflareContext({ async: true });
+  const expectedUser = env.ADMIN_USERNAME ?? "admin";
+  const stored = env.ADMIN_PASSWORD_HASH;
+  const secret = env.AUTH_SECRET;
 
   if (!stored || !secret) {
     redirect("/admin/login?err=config");

@@ -1,3 +1,4 @@
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextResponse, type NextRequest } from "next/server";
 import { SESSION_COOKIE, verifySession } from "@/lib/auth";
 
@@ -10,7 +11,8 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  const secret = process.env.AUTH_SECRET;
+  const { env } = await getCloudflareContext({ async: true });
+  const secret = env.AUTH_SECRET;
   if (!secret) {
     // Misconfigured — block rather than allow open access.
     const url = req.nextUrl.clone();

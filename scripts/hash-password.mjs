@@ -35,4 +35,9 @@ const bits = await crypto.subtle.deriveBits(
 );
 const hash = new Uint8Array(bits);
 
-console.log(`pbkdf2$${ITERATIONS}$${b64(salt)}$${b64(hash)}`);
+const value = `pbkdf2$${ITERATIONS}$${b64(salt)}$${b64(hash)}`;
+
+console.log(value);
+console.log("");
+console.log("// .dev.vars (wrangler — paste as-is):");
+console.log(`ADMIN_PASSWORD_HASH=${value}`);
