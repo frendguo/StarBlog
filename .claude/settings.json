@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -c 'if (.tool_input.file_path // \"\" | endswith(\"src/db/schema.ts\")) then {hookSpecificOutput:{hookEventName:\"PostToolUse\",additionalContext:\"src/db/schema.ts 已变更。下一步: 运行 pnpm db:generate 生成迁移 SQL，然后审核 drizzle/migrations/ 下的新文件。完整流程可调用 /db-migrate skill。\"}} else empty end' 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
