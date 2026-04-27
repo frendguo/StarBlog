@@ -21,56 +21,45 @@ export default async function HomePage() {
   return (
     <div>
       {/* HERO */}
-      <section className="hero" style={{ textAlign: "center" }}>
+      <section className="hero">
         <div
           className="ambient"
           style={{
-            width: 360,
-            height: 360,
+            width: 380,
+            height: 380,
             background: "#FFD9C4",
-            top: -120,
-            left: "50%",
-            marginLeft: -300,
+            top: -140,
+            left: -80,
           }}
         />
         <div
           className="ambient"
           style={{
-            width: 280,
-            height: 280,
+            width: 320,
+            height: 320,
             background: "#FFF0AC",
-            top: 80,
-            right: "12%",
+            top: 40,
+            right: -60,
           }}
         />
 
-        <div
-          style={{
-            position: "relative",
-            zIndex: 1,
-            maxWidth: 760,
-            margin: "0 auto",
-          }}
-        >
+        <div className="hero-row">
+          <div>
           <span className="hero-greeting">
             <span className="wave">👋</span> 你好，我是 {siteConfig.author.name} ·{" "}
             {siteConfig.author.location}
           </span>
-          <h1 className="hero-title" style={{ textAlign: "center" }}>
-            <span className="underline">写代码</span>，读源码，
-            <br />
+          <h1 className="hero-title">
+            <span className="underline">写代码</span>，读源码，<br />
             以及一些 <span className="accent">关于写代码</span>
             <br />
             的文字。
           </h1>
-          <p
-            className="hero-lede"
-            style={{ margin: "0 auto 32px", textAlign: "center" }}
-          >
+          <p className="hero-lede">
             我是一个软件工程师，专注于 C++ 和 Windows 平台。 这里记录我的调试日记、源码拆解，
             以及最近开始痴迷的 AI 工程化 — 慢但认真，每周大约一篇。
           </p>
-          <div className="hero-cta" style={{ justifyContent: "center" }}>
+          <div className="hero-cta">
             <Link className="btn btn-primary" href="/writing">
               浏览所有文章 <span>→</span>
             </Link>
@@ -82,20 +71,25 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <HeroCounters
-            posts={posts.length}
-            words={totalWords}
-            years={siteConfig.yearsWriting}
-          />
-        </div>
+          </div>
 
-        <HeroTerminal postCount={posts.length} nowSummary={NOW_SUMMARY} />
+          <div className="hero-col-aside">
+            <div className="hero-stats-card">
+              <HeroCounters
+                posts={posts.length}
+                words={totalWords}
+                years={siteConfig.yearsWriting}
+              />
+            </div>
+            <HeroTerminal postCount={posts.length} nowSummary={NOW_SUMMARY} />
+          </div>
+        </div>
       </section>
 
       {/* FEATURED */}
       {featured && (
         <section
-          style={{ maxWidth: 1100, margin: "40px auto 0", padding: "0 32px" }}
+          style={{ maxWidth: 1200, margin: "40px auto 0", padding: "0 32px" }}
         >
           <div className="section-label">
             <span style={{ color: "var(--accent)" }}>★</span> Featured
@@ -212,7 +206,7 @@ export default async function HomePage() {
 
       {/* RECENT */}
       <section
-        style={{ maxWidth: 1100, margin: "64px auto 0", padding: "0 32px" }}
+        style={{ maxWidth: 1200, margin: "64px auto 0", padding: "0 32px" }}
       >
         <div
           style={{
@@ -313,7 +307,7 @@ export default async function HomePage() {
 
       {/* TOPICS strip */}
       <section
-        style={{ maxWidth: 1100, margin: "80px auto 0", padding: "0 32px" }}
+        style={{ maxWidth: 1200, margin: "80px auto 0", padding: "0 32px" }}
       >
         <div
           style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}
@@ -412,7 +406,7 @@ export default async function HomePage() {
       {/* NEWSLETTER */}
       <section
         id="newsletter"
-        style={{ maxWidth: 1100, margin: "80px auto 0", padding: "0 32px", scrollMarginTop: 80 }}
+        style={{ maxWidth: 1200, margin: "80px auto 0", padding: "0 32px", scrollMarginTop: 80 }}
       >
         <div
           className="newsletter-band"
@@ -481,7 +475,7 @@ export default async function HomePage() {
       {/* FOOTER */}
       <footer
         style={{
-          maxWidth: 1100,
+          maxWidth: 1200,
           margin: "80px auto 0",
           padding: 32,
           borderTop: "1px solid var(--rule)",

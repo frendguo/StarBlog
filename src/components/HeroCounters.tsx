@@ -36,7 +36,7 @@ export function HeroCounters({ posts, words, years }: Props) {
   }, [posts, words, years]);
 
   return (
-    <div className="hero-stats" style={{ justifyContent: "center" }}>
+    <div className="hero-stats">
       <div>
         <div className="hero-stat-num">{shown.posts}</div>
         <div className="hero-stat-lbl">Articles</div>

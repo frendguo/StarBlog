@@ -26,14 +26,7 @@ export function HeroTerminal({ postCount, nowSummary }: Props) {
   }, [idx, lines.length]);
 
   return (
-    <div
-      style={{
-        maxWidth: 460,
-        margin: "56px auto 0",
-        position: "relative",
-        zIndex: 1,
-      }}
-    >
+    <div style={{ position: "relative", zIndex: 1 }}>
       <div className="terminal-float" style={{ marginTop: 0 }}>
         <div className="terminal-float-bar">
           <span className="t-r" />
