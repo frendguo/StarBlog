@@ -1,0 +1,60 @@
+.claude/skills/verify/SKILL.md
+  beaaa734849fd05d 1-13
+.claude/skills/db-migrate/SKILL.md
+  beaaa734849fd05d 1-46
+CLAUDE.md
+  beaaa734849fd05d 1-78
+.claude/settings.json
+  beaaa734849fd05d 1-15
+AGENTS.md
+  6ed8d83f82248943 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.10",
+  "base_commit_sha": "adf6cce1ea1269736291136f1510e3a7f78153f6",
+  "prompts": {
+    "6ed8d83f82248943": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcc9d-f07f-7422-8ab9-1ea624b0135c",
+        "model": "gpt-5.5"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 78,
+      "total_deletions": 0,
+      "accepted_lines": 78,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/67ca228d5f55cd3ee232dcfbf1c66bb43c326b9b0cef9aa28047096a29ab12cd"
+    },
+    "beaaa734849fd05d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b7f6a8b3-90e3-4687-a36c-800dee79e4fc",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 155,
+      "total_deletions": 2,
+      "accepted_lines": 152,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/59722ae9053c37f4dbe995352223297ca37b9599baab3e2325a08177b7cdef8a"
+    },
+    "f44cedf21ec42843": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f7003199-60e2-47e8-a824-de5ced86c0d1",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 392,
+      "total_deletions": 11,
+      "accepted_lines": 358,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/b59d5dd3af91497916234669c170697d01d97fdb92ab24892a7843e6514bb653"
+    }
+  }
+}
