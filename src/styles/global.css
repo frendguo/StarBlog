@@ -625,6 +625,33 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .prose blockquote p { margin: 0; }
 .prose ul, .prose ol { margin: 1em 0 1.4em 1.6em; }
 .prose li { margin-bottom: 0.45em; }
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.6em auto;
+  border-radius: 4px;
+}
+.prose figure { margin: 1.6em 0; }
+.prose figure img { margin: 0 auto 0.6em; }
+.prose figcaption {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--ink-3);
+  font-style: italic;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4em 0;
+  font-size: 0.9375rem;
+}
+.prose th, .prose td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+}
+.prose th { font-weight: 600; color: var(--ink); }
 
 .diagram {
   font-family: var(--mono);
