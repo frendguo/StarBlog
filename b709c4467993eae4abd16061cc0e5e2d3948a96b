@@ -1,0 +1,64 @@
+src/styles/global.css
+  74354002ee0e236c 628-654
+src/app/now/page.tsx
+  74354002ee0e236c 2-5,12-17,21-22,24-26
+scripts/upload-media-to-r2.mjs
+  74354002ee0e236c 1-122
+next.config.ts
+  74354002ee0e236c 1-3,7-32,38-39
+scripts/import-wp.mjs
+  74354002ee0e236c 1-384
+src/lib/seed-data.ts
+  74354002ee0e236c 2-4
+scripts/generate-seed.mjs
+  74354002ee0e236c 2-3,6,28-29,47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.10",
+  "base_commit_sha": "b709c4467993eae4abd16061cc0e5e2d3948a96b",
+  "prompts": {
+    "6ed8d83f82248943": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcc9d-f07f-7422-8ab9-1ea624b0135c",
+        "model": "gpt-5.5"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 78,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/67ca228d5f55cd3ee232dcfbf1c66bb43c326b9b0cef9aa28047096a29ab12cd"
+    },
+    "74354002ee0e236c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "95e91d22-b9d2-48d2-acc8-77997286656a",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 590,
+      "total_deletions": 721,
+      "accepted_lines": 590,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/913e004957a5172f1c4d35dec325f15b4282ce4d33388c2f36e020db76f5a328"
+    },
+    "b34316eda34108ce": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3c34e3dc-6e7c-4976-a3e4-5b0ac299e7fc",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1959,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/759b09593b8dab596f92548442470c8b0999eff6135c5114ddf94ceca38f49cd"
+    }
+  }
+}
