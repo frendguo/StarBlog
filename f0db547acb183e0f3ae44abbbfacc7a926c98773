@@ -1,0 +1,98 @@
+src/components/SearchPalette.tsx
+  b34316eda34108ce 168,182,199,216,224,238,257,266,283
+src/app/projects/page.tsx
+  b34316eda34108ce 46,59,82,98,109
+src/app/admin/settings/page.tsx
+  b34316eda34108ce 13,24,37,81,111,122
+src/app/admin/_components/PostRowActions.tsx
+  b34316eda34108ce 29,37,45,59,70
+src/app/writing/page.tsx
+  b34316eda34108ce 68,80,109,118,136,156
+src/app/admin/_components/CommentRowActions.tsx
+  b34316eda34108ce 26,37,48
+src/app/now/page.tsx
+  b34316eda34108ce 69,93,110,121
+src/app/admin/login/page.tsx
+  b34316eda34108ce 45,54,104,126
+src/app/writing/_components/CommentSection.tsx
+  b34316eda34108ce 98,108,118,143,190,224,231
+src/app/admin/page.tsx
+  b34316eda34108ce 73,84,148,155,174,243
+src/app/writing/_components/WritingFilter.tsx
+  b34316eda34108ce 30,47
+src/styles/global.css
+  b34316eda34108ce 9-12,98,111,122,163,172,187,195,203,218,245,268,354,363,398,423,431,455,471,482,490,506,536,544,571,598,616,619,651,665-666,672,708,721,740,746,765,773,780,794,799,824,840,845,850,884,894,900,1039
+src/app/admin/_components/AdminShell.tsx
+  b34316eda34108ce 38,46,55,80,91
+src/app/admin/_components/PostEditor.tsx
+  b34316eda34108ce 88,99,111,152,167,243,262,361
+src/app/page.tsx
+  b34316eda34108ce 135,146,158,169,188,205,228,239,266,277,288,302,334,346,369,379,391,403,448,459,469,492
+src/components/HeroCounters.tsx
+  b34316eda34108ce 51,57
+src/app/writing/_components/TocSidebar.tsx
+  b34316eda34108ce 46,60,91,110,160
+src/app/admin/posts/page.tsx
+  b34316eda34108ce 55,66,113,150,165,184
+src/app/about/page.tsx
+  b34316eda34108ce 80
+src/app/writing/[slug]/page.tsx
+  b34316eda34108ce 80,91,102,117,137,166,199,210,234,245,276,284,301
+src/app/admin/subscribers/page.tsx
+  b34316eda34108ce 22,33,73,82,91
+src/app/admin/comments/page.tsx
+  b34316eda34108ce 29,40,66,75,84,98
+src/components/NewsletterForm.tsx
+  b34316eda34108ce 57
+src/app/admin/tags/TagsClient.tsx
+  b34316eda34108ce 85,96,116,152,159,169,181,198,292,303
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.10",
+  "base_commit_sha": "f0db547acb183e0f3ae44abbbfacc7a926c98773",
+  "prompts": {
+    "6ed8d83f82248943": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcc9d-f07f-7422-8ab9-1ea624b0135c",
+        "model": "gpt-5.5"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 78,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/67ca228d5f55cd3ee232dcfbf1c66bb43c326b9b0cef9aa28047096a29ab12cd"
+    },
+    "b34316eda34108ce": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3c34e3dc-6e7c-4976-a3e4-5b0ac299e7fc",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 2249,
+      "total_deletions": 189,
+      "accepted_lines": 2152,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/759b09593b8dab596f92548442470c8b0999eff6135c5114ddf94ceca38f49cd"
+    },
+    "b610ea02614253e2": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcca7-2406-7eb2-9b03-12dd88643ca1",
+        "model": "gpt-5.5"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 0,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/d21a32d74cadf987d85f6c42e7ea9da190027115beff5839f8dde1c8480b2c5b"
+    }
+  }
+}
