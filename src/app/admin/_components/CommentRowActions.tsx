@@ -23,7 +23,7 @@ export function CommentRowActions({ id, status }: Props) {
         <button
           type="button"
           className="btn"
-          style={{ fontSize: 11, padding: "4px 8px", color: "#16A34A" }}
+          style={{ fontSize: "0.6875rem", padding: "4px 8px", color: "#16A34A" }}
           onClick={() => start(() => setCommentStatus(id, "approved"))}
           disabled={pending}
         >
@@ -34,7 +34,7 @@ export function CommentRowActions({ id, status }: Props) {
         <button
           type="button"
           className="btn"
-          style={{ fontSize: 11, padding: "4px 8px" }}
+          style={{ fontSize: "0.6875rem", padding: "4px 8px" }}
           onClick={() => start(() => setCommentStatus(id, "blocked"))}
           disabled={pending}
         >
@@ -45,7 +45,7 @@ export function CommentRowActions({ id, status }: Props) {
         type="button"
         className="btn"
         style={{
-          fontSize: 11,
+          fontSize: "0.6875rem",
           padding: "4px 8px",
           color: "#DC2626",
           borderColor: "rgba(220,38,38,.3)",

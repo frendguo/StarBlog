@@ -165,7 +165,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
     <div className="palette-overlay" onClick={close}>
       <div className="palette" onClick={(e) => e.stopPropagation()}>
         <div className="palette-input-row">
-          <span style={{ color: "var(--accent)", fontFamily: "var(--mono)", fontSize: 14 }}>›</span>
+          <span style={{ color: "var(--accent)", fontFamily: "var(--mono)", fontSize: "0.875rem" }}>›</span>
           <input
             ref={inputRef}
             className="palette-input"
@@ -179,7 +179,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
           <kbd
             style={{
               fontFamily: "var(--mono)",
-              fontSize: 10,
+              fontSize: "0.625rem",
               color: "var(--ink-4)",
               padding: "2px 6px",
               border: "1px solid var(--rule)",
@@ -196,7 +196,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
                 style={{
                   padding: "6px 12px",
                   fontFamily: "var(--mono)",
-                  fontSize: 10,
+                  fontSize: "0.625rem",
                   color: "var(--ink-4)",
                   letterSpacing: "0.1em",
                 }}
@@ -213,7 +213,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
                   <span
                     style={{
                       fontFamily: "var(--mono)",
-                      fontSize: 11,
+                      fontSize: "0.6875rem",
                       color: "var(--accent)",
                       width: 14,
                     }}
@@ -221,7 +221,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
                     §
                   </span>
                   <span className="palette-result-title">{p.title}</span>
-                  <span className={`tag ${p.tagId}`} style={{ fontSize: 10 }}>
+                  <span className={`tag ${p.tagId}`} style={{ fontSize: "0.625rem" }}>
                     {p.tagLabel}
                   </span>
                   <span className="palette-result-meta">{p.readTime}m</span>
@@ -235,7 +235,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
                 style={{
                   padding: "12px 12px 6px",
                   fontFamily: "var(--mono)",
-                  fontSize: 10,
+                  fontSize: "0.625rem",
                   color: "var(--ink-4)",
                   letterSpacing: "0.1em",
                 }}
@@ -254,7 +254,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
                     <span
                       style={{
                         fontFamily: "var(--mono)",
-                        fontSize: 11,
+                        fontSize: "0.6875rem",
                         color: "var(--ink-4)",
                         width: 14,
                       }}
@@ -263,7 +263,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
                     </span>
                     <span
                       className="palette-result-title"
-                      style={{ fontFamily: "var(--mono)", fontSize: 13 }}
+                      style={{ fontFamily: "var(--mono)", fontSize: "0.8125rem" }}
                     >
                       {c.label}
                     </span>
@@ -280,7 +280,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
                 textAlign: "center",
                 fontFamily: "var(--serif)",
                 color: "var(--ink-4)",
-                fontSize: 14,
+                fontSize: "0.875rem",
               }}
             >
               没有匹配的结果

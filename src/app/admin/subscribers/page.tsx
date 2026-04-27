@@ -19,7 +19,7 @@ export default async function SubscribersPage() {
           <div
             style={{
               fontFamily: "var(--mono)",
-              fontSize: 11,
+              fontSize: "0.6875rem",
               color: "var(--ink-4)",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -30,7 +30,7 @@ export default async function SubscribersPage() {
           <div
             style={{
               fontFamily: "var(--serif)",
-              fontSize: 18,
+              fontSize: "1.125rem",
               fontWeight: 500,
             }}
           >
@@ -70,7 +70,7 @@ export default async function SubscribersPage() {
                 <td
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 13,
+                    fontSize: "0.8125rem",
                     color: "var(--ink-2)",
                   }}
                 >
@@ -79,7 +79,7 @@ export default async function SubscribersPage() {
                 <td
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 11,
+                    fontSize: "0.6875rem",
                     color: s.confirmedAt ? "var(--accent-3)" : "var(--ink-4)",
                   }}
                 >
@@ -88,7 +88,7 @@ export default async function SubscribersPage() {
                 <td
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 11,
+                    fontSize: "0.6875rem",
                     color: "var(--ink-4)",
                   }}
                 >

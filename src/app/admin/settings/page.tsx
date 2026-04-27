@@ -10,7 +10,7 @@ export default function SettingsPage() {
           <div
             style={{
               fontFamily: "var(--mono)",
-              fontSize: 11,
+              fontSize: "0.6875rem",
               color: "var(--ink-4)",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -21,7 +21,7 @@ export default function SettingsPage() {
           <div
             style={{
               fontFamily: "var(--serif)",
-              fontSize: 18,
+              fontSize: "1.125rem",
               fontWeight: 500,
             }}
           >
@@ -34,7 +34,7 @@ export default function SettingsPage() {
           style={{
             color: "var(--ink-3)",
             fontFamily: "var(--serif)",
-            fontSize: 14,
+            fontSize: "0.875rem",
             lineHeight: 1.6,
             marginBottom: 24,
           }}
@@ -78,7 +78,7 @@ export default function SettingsPage() {
           <p
             style={{
               fontFamily: "var(--mono)",
-              fontSize: 12,
+              fontSize: "0.75rem",
               color: "var(--ink-3)",
               lineHeight: 1.6,
             }}
@@ -108,7 +108,7 @@ function Field({ label, value }: { label: string; value: string }) {
       <span
         style={{
           fontFamily: "var(--mono)",
-          fontSize: 11,
+          fontSize: "0.6875rem",
           color: "var(--ink-4)",
           letterSpacing: "0.06em",
           textTransform: "uppercase",
@@ -119,7 +119,7 @@ function Field({ label, value }: { label: string; value: string }) {
       <span
         style={{
           fontFamily: "var(--mono)",
-          fontSize: 13,
+          fontSize: "0.8125rem",
           color: "var(--ink-2)",
           wordBreak: "break-all",
         }}

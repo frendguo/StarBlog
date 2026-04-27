@@ -66,7 +66,7 @@ export default function NowPage() {
       <div
         style={{
           fontFamily: "var(--mono)",
-          fontSize: 11,
+          fontSize: "0.6875rem",
           color: "var(--ink-4)",
         }}
       >
@@ -90,7 +90,7 @@ function NowSection({
       <div
         style={{
           fontFamily: "var(--mono)",
-          fontSize: 11,
+          fontSize: "0.6875rem",
           color: "var(--accent)",
           letterSpacing: "0.14em",
           marginBottom: 16,
@@ -107,7 +107,7 @@ function NowSection({
             <div
               style={{
                 fontFamily: "var(--serif)",
-                fontSize: 16,
+                fontSize: "1rem",
                 color: "var(--ink)",
                 marginBottom: 4,
                 fontWeight: 500,
@@ -118,7 +118,7 @@ function NowSection({
             <div
               style={{
                 fontFamily: "var(--serif)",
-                fontSize: 14,
+                fontSize: "0.875rem",
                 color: "var(--ink-3)",
                 lineHeight: 1.5,
               }}

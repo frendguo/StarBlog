@@ -48,13 +48,13 @@ export function HeroCounters({ posts, words, years }: Props) {
       <div>
         <div className="hero-stat-num">
           {shown.years}
-          <span style={{ fontSize: 18, color: "var(--ink-3)" }}> yrs</span>
+          <span style={{ fontSize: "1.125rem", color: "var(--ink-3)" }}> yrs</span>
         </div>
         <div className="hero-stat-lbl">Writing online</div>
       </div>
       <div>
         <div className="hero-stat-num" style={{ color: "var(--accent-3)" }}>
-          ● <span style={{ fontSize: 16 }}>online</span>
+          ● <span style={{ fontSize: "1rem" }}>online</span>
         </div>
         <div className="hero-stat-lbl">Building right now</div>
       </div>

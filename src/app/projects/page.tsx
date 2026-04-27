@@ -43,7 +43,7 @@ export default async function ProjectsPage() {
                 <span
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 17,
+                    fontSize: "1.0625rem",
                     fontWeight: 600,
                     color: "var(--ink)",
                   }}
@@ -56,7 +56,7 @@ export default async function ProjectsPage() {
                     alignItems: "center",
                     gap: 5,
                     fontFamily: "var(--mono)",
-                    fontSize: 10.5,
+                    fontSize: "0.6563rem",
                     color: "var(--ink-3)",
                     padding: "2px 7px",
                     border: "1px solid var(--rule)",
@@ -79,7 +79,7 @@ export default async function ProjectsPage() {
                     display: "flex",
                     gap: 14,
                     fontFamily: "var(--mono)",
-                    fontSize: 11,
+                    fontSize: "0.6875rem",
                     color: "var(--ink-4)",
                   }}
                 >
@@ -95,7 +95,7 @@ export default async function ProjectsPage() {
               <p
                 style={{
                   fontFamily: "var(--serif)",
-                  fontSize: 15,
+                  fontSize: "0.9375rem",
                   color: "var(--ink-3)",
                   lineHeight: 1.55,
                 }}
@@ -106,7 +106,7 @@ export default async function ProjectsPage() {
                 {p.url && (
                   <a
                     className="btn"
-                    style={{ fontSize: 11, padding: "6px 10px" }}
+                    style={{ fontSize: "0.6875rem", padding: "6px 10px" }}
                     href={p.url}
                     target="_blank"
                     rel="noreferrer noopener"

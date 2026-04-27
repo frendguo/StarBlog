@@ -132,7 +132,7 @@ export default async function HomePage() {
                   <span
                     style={{
                       fontFamily: "var(--mono)",
-                      fontSize: 11,
+                      fontSize: "0.6875rem",
                       color: "var(--ink-3)",
                     }}
                   >
@@ -143,7 +143,7 @@ export default async function HomePage() {
               <h3
                 style={{
                   fontFamily: "var(--serif)",
-                  fontSize: 30,
+                  fontSize: "1.875rem",
                   fontWeight: 600,
                   lineHeight: 1.15,
                   marginBottom: 14,
@@ -155,7 +155,7 @@ export default async function HomePage() {
               <p
                 style={{
                   fontFamily: "var(--serif)",
-                  fontSize: 17,
+                  fontSize: "1.0625rem",
                   color: "var(--ink-2)",
                   lineHeight: 1.55,
                   marginBottom: 16,
@@ -166,7 +166,7 @@ export default async function HomePage() {
               <div
                 style={{
                   fontFamily: "var(--mono)",
-                  fontSize: 12,
+                  fontSize: "0.75rem",
                   color: "var(--ink-3)",
                 }}
               >
@@ -185,7 +185,7 @@ export default async function HomePage() {
                 justifyContent: "space-between",
                 border: "1px solid rgba(0,0,0,.06)",
                 fontFamily: "var(--mono)",
-                fontSize: 11.5,
+                fontSize: "0.7188rem",
               }}
             >
               <div>
@@ -202,7 +202,7 @@ export default async function HomePage() {
                   <div>· MSVC 19.40 实测</div>
                 </div>
               </div>
-              <div style={{ marginTop: 16, color: "#aaa", fontSize: 10 }}>
+              <div style={{ marginTop: 16, color: "#aaa", fontSize: "0.625rem" }}>
                 {featured.words.toLocaleString()} words
               </div>
             </div>
@@ -225,7 +225,7 @@ export default async function HomePage() {
           <span
             style={{
               fontFamily: "var(--mono)",
-              fontSize: 11,
+              fontSize: "0.6875rem",
               letterSpacing: "0.14em",
               color: "var(--ink-4)",
               textTransform: "uppercase",
@@ -236,7 +236,7 @@ export default async function HomePage() {
           <div style={{ flex: 1, height: 1, background: "var(--rule)" }} />
           <Link
             className="btn btn-ghost"
-            style={{ fontSize: 12, padding: "4px 10px" }}
+            style={{ fontSize: "0.75rem", padding: "4px 10px" }}
             href="/writing"
           >
             View all {posts.length} →
@@ -263,7 +263,7 @@ export default async function HomePage() {
               <div
                 style={{
                   fontFamily: "var(--mono)",
-                  fontSize: 11,
+                  fontSize: "0.6875rem",
                   color: "var(--ink-4)",
                   letterSpacing: "0.02em",
                 }}
@@ -274,7 +274,7 @@ export default async function HomePage() {
                 <h4
                   style={{
                     fontFamily: "var(--serif)",
-                    fontSize: 19,
+                    fontSize: "1.1875rem",
                     fontWeight: 500,
                     marginBottom: 4,
                     letterSpacing: "-0.005em",
@@ -285,7 +285,7 @@ export default async function HomePage() {
                 <p
                   style={{
                     fontFamily: "var(--serif)",
-                    fontSize: 14,
+                    fontSize: "0.875rem",
                     color: "var(--ink-3)",
                     lineHeight: 1.5,
                   }}
@@ -299,7 +299,7 @@ export default async function HomePage() {
               <span
                 style={{
                   fontFamily: "var(--mono)",
-                  fontSize: 11,
+                  fontSize: "0.6875rem",
                   color: "var(--ink-4)",
                   textAlign: "right",
                 }}
@@ -331,7 +331,7 @@ export default async function HomePage() {
                   style={{
                     cursor: "pointer",
                     padding: "6px 12px",
-                    fontSize: 12.5,
+                    fontSize: "0.7813rem",
                   }}
                 >
                   #{t.label}
@@ -343,7 +343,7 @@ export default async function HomePage() {
               style={{
                 marginTop: 16,
                 fontFamily: "var(--serif)",
-                fontSize: 14,
+                fontSize: "0.875rem",
                 color: "var(--ink-3)",
                 lineHeight: 1.5,
               }}
@@ -366,7 +366,7 @@ export default async function HomePage() {
               <div
                 style={{
                   fontFamily: "var(--mono)",
-                  fontSize: 11,
+                  fontSize: "0.6875rem",
                   color: "var(--accent-3)",
                   marginBottom: 8,
                 }}
@@ -376,7 +376,7 @@ export default async function HomePage() {
               <p
                 style={{
                   fontFamily: "var(--serif)",
-                  fontSize: 15.5,
+                  fontSize: "0.9688rem",
                   color: "var(--ink-2)",
                   lineHeight: 1.55,
                   marginBottom: 12,
@@ -388,7 +388,7 @@ export default async function HomePage() {
                     background: "var(--bg-card)",
                     padding: "1px 6px",
                     borderRadius: 3,
-                    fontSize: 13,
+                    fontSize: "0.8125rem",
                     fontFamily: "var(--mono)",
                     border: "1px solid var(--rule)",
                   }}
@@ -400,7 +400,7 @@ export default async function HomePage() {
               <Link
                 href="/now"
                 className="btn btn-ghost"
-                style={{ fontSize: 12, padding: "4px 10px" }}
+                style={{ fontSize: "0.75rem", padding: "4px 10px" }}
               >
                 查看完整 Now 页 →
               </Link>
@@ -445,7 +445,7 @@ export default async function HomePage() {
             <div
               style={{
                 fontFamily: "var(--mono)",
-                fontSize: 11,
+                fontSize: "0.6875rem",
                 color: "var(--accent)",
                 letterSpacing: "0.16em",
                 marginBottom: 10,
@@ -456,7 +456,7 @@ export default async function HomePage() {
             <h3
               style={{
                 fontFamily: "var(--serif)",
-                fontSize: 28,
+                fontSize: "1.75rem",
                 fontWeight: 600,
                 marginBottom: 10,
                 letterSpacing: "-0.015em",
@@ -466,7 +466,7 @@ export default async function HomePage() {
             </h3>
             <p
               style={{
-                fontSize: 14.5,
+                fontSize: "0.9063rem",
                 color: "rgba(255,255,255,.7)",
                 lineHeight: 1.55,
               }}
@@ -489,7 +489,7 @@ export default async function HomePage() {
           justifyContent: "space-between",
           alignItems: "center",
           fontFamily: "var(--mono)",
-          fontSize: 11.5,
+          fontSize: "0.7188rem",
           color: "var(--ink-4)",
         }}
       >

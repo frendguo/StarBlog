@@ -52,7 +52,7 @@ export default async function AdminPostsPage({ searchParams }: Props) {
           <div
             style={{
               fontFamily: "var(--mono)",
-              fontSize: 11,
+              fontSize: "0.6875rem",
               color: "var(--ink-4)",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -63,7 +63,7 @@ export default async function AdminPostsPage({ searchParams }: Props) {
           <div
             style={{
               fontFamily: "var(--serif)",
-              fontSize: 18,
+              fontSize: "1.125rem",
               fontWeight: 500,
             }}
           >
@@ -110,7 +110,7 @@ export default async function AdminPostsPage({ searchParams }: Props) {
                 className="tag"
                 style={{
                   padding: "5px 11px",
-                  fontSize: 12,
+                  fontSize: "0.75rem",
                   cursor: "pointer",
                   background: status === s ? "var(--ink)" : "var(--bg-soft)",
                   color: status === s ? "var(--bg)" : "var(--ink-3)",
@@ -147,7 +147,7 @@ export default async function AdminPostsPage({ searchParams }: Props) {
                       color: "var(--ink)",
                       textDecoration: "none",
                       fontFamily: "var(--serif)",
-                      fontSize: 15,
+                      fontSize: "0.9375rem",
                     }}
                   >
                     {r.posts.pinned && (
@@ -162,7 +162,7 @@ export default async function AdminPostsPage({ searchParams }: Props) {
                   <div
                     style={{
                       fontFamily: "var(--mono)",
-                      fontSize: 11,
+                      fontSize: "0.6875rem",
                       color: "var(--ink-4)",
                       marginTop: 4,
                     }}
@@ -181,7 +181,7 @@ export default async function AdminPostsPage({ searchParams }: Props) {
                 <td
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 11,
+                    fontSize: "0.6875rem",
                     color: "var(--ink-4)",
                   }}
                 >

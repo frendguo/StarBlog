@@ -43,7 +43,7 @@ export function TocSidebar({ items }: Props) {
               color: "var(--ink-4)",
               marginBottom: 14,
               fontFamily: "var(--mono)",
-              fontSize: 11,
+              fontSize: "0.6875rem",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
             }}
@@ -57,7 +57,7 @@ export function TocSidebar({ items }: Props) {
                 onClick={() => scrollTo(t.id)}
                 style={{
                   fontFamily: "var(--mono)",
-                  fontSize: 12,
+                  fontSize: "0.75rem",
                   textAlign: "left",
                   padding: `5px 0 5px ${12 + (t.depth - 2) * 12}px`,
                   borderLeft: `2px solid ${
@@ -88,7 +88,7 @@ export function TocSidebar({ items }: Props) {
             color: "var(--ink-4)",
             marginBottom: 12,
             fontFamily: "var(--mono)",
-            fontSize: 11,
+            fontSize: "0.6875rem",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
           }}
@@ -107,7 +107,7 @@ export function TocSidebar({ items }: Props) {
           background: "var(--bg-soft)",
           borderRadius: 6,
           fontFamily: "var(--mono)",
-          fontSize: 10.5,
+          fontSize: "0.6563rem",
           color: "var(--ink-3)",
           lineHeight: 1.5,
         }}
@@ -157,7 +157,7 @@ function CopyLink() {
   return (
     <button
       className="btn"
-      style={{ justifyContent: "flex-start", fontSize: 11 }}
+      style={{ justifyContent: "flex-start", fontSize: "0.6875rem" }}
       onClick={onCopy}
     >
       {copied ? "✓ Copied" : "⎘ Copy link"}

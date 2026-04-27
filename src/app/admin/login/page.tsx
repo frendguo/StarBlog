@@ -42,7 +42,7 @@ export default async function LoginPage({ searchParams }: Props) {
             <div
               style={{
                 fontFamily: "var(--serif)",
-                fontSize: 18,
+                fontSize: "1.125rem",
                 fontWeight: 600,
               }}
             >
@@ -51,7 +51,7 @@ export default async function LoginPage({ searchParams }: Props) {
             <div
               style={{
                 fontFamily: "var(--mono)",
-                fontSize: 11,
+                fontSize: "0.6875rem",
                 color: "var(--ink-4)",
               }}
             >
@@ -101,7 +101,7 @@ export default async function LoginPage({ searchParams }: Props) {
                 border: "1px solid rgba(220, 38, 38, .25)",
                 color: "#DC2626",
                 fontFamily: "var(--mono)",
-                fontSize: 12,
+                fontSize: "0.75rem",
               }}
             >
               {errMsg}
@@ -123,7 +123,7 @@ export default async function LoginPage({ searchParams }: Props) {
             paddingTop: 16,
             borderTop: "1px solid var(--rule)",
             fontFamily: "var(--mono)",
-            fontSize: 10.5,
+            fontSize: "0.6563rem",
             color: "var(--ink-4)",
             lineHeight: 1.6,
           }}

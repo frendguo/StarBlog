@@ -26,7 +26,7 @@ export default async function CommentsPage() {
           <div
             style={{
               fontFamily: "var(--mono)",
-              fontSize: 11,
+              fontSize: "0.6875rem",
               color: "var(--ink-4)",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -37,7 +37,7 @@ export default async function CommentsPage() {
           <div
             style={{
               fontFamily: "var(--serif)",
-              fontSize: 18,
+              fontSize: "1.125rem",
               fontWeight: 500,
             }}
           >
@@ -63,7 +63,7 @@ export default async function CommentsPage() {
                 <td
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 12,
+                    fontSize: "0.75rem",
                     color: "var(--ink-2)",
                   }}
                 >
@@ -72,7 +72,7 @@ export default async function CommentsPage() {
                 <td
                   style={{
                     fontFamily: "var(--serif)",
-                    fontSize: 14,
+                    fontSize: "0.875rem",
                     maxWidth: 360,
                   }}
                 >
@@ -81,7 +81,7 @@ export default async function CommentsPage() {
                 <td
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 11,
+                    fontSize: "0.6875rem",
                     color: "var(--ink-4)",
                   }}
                 >
@@ -95,7 +95,7 @@ export default async function CommentsPage() {
                 <td
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 11,
+                    fontSize: "0.6875rem",
                     color: "var(--ink-4)",
                   }}
                 >

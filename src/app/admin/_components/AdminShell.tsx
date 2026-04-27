@@ -35,7 +35,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         <div className="admin-brand">
           <div
             className="brand-mark"
-            style={{ width: 26, height: 26, fontSize: 12 }}
+            style={{ width: 26, height: 26, fontSize: "0.75rem" }}
           >
             f
           </div>
@@ -43,7 +43,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             <div
               style={{
                 fontFamily: "var(--serif)",
-                fontSize: 14,
+                fontSize: "0.875rem",
                 fontWeight: 600,
               }}
             >
@@ -52,7 +52,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             <div
               style={{
                 fontFamily: "var(--mono)",
-                fontSize: 10,
+                fontSize: "0.625rem",
                 color: "var(--ink-4)",
               }}
             >
@@ -77,7 +77,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           <Link
             href="/"
             className="admin-nav-item"
-            style={{ marginTop: 16, fontSize: 12 }}
+            style={{ marginTop: 16, fontSize: "0.75rem" }}
           >
             <span className="ico">↗</span>
             <span>Back to site</span>
@@ -88,7 +88,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               className="admin-nav-item"
               style={{
                 width: "100%",
-                fontSize: 12,
+                fontSize: "0.75rem",
                 color: "var(--ink-3)",
                 background: "transparent",
                 border: "none",

@@ -54,7 +54,7 @@ export function NewsletterForm({ subscriberCount }: Props) {
       <p
         style={{
           fontFamily: "var(--mono)",
-          fontSize: 10,
+          fontSize: "0.625rem",
           color: msg?.kind === "err" ? "#FF8A5C" : "rgba(255,255,255,.5)",
           textAlign: "center",
           marginTop: 8,

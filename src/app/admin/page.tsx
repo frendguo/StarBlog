@@ -70,7 +70,7 @@ export default async function AdminDashboard() {
           <div
             style={{
               fontFamily: "var(--mono)",
-              fontSize: 11,
+              fontSize: "0.6875rem",
               color: "var(--ink-4)",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -81,7 +81,7 @@ export default async function AdminDashboard() {
           <div
             style={{
               fontFamily: "var(--serif)",
-              fontSize: 18,
+              fontSize: "1.125rem",
               fontWeight: 500,
             }}
           >
@@ -145,14 +145,14 @@ export default async function AdminDashboard() {
                     borderBottom: "1px solid var(--rule-soft)",
                     color: "inherit",
                     textDecoration: "none",
-                    fontSize: 13,
+                    fontSize: "0.8125rem",
                     alignItems: "center",
                   }}
                 >
                   <div
                     style={{
                       fontFamily: "var(--serif)",
-                      fontSize: 15,
+                      fontSize: "0.9375rem",
                       color: "var(--ink)",
                     }}
                   >
@@ -171,7 +171,7 @@ export default async function AdminDashboard() {
                   <span
                     style={{
                       fontFamily: "var(--mono)",
-                      fontSize: 11,
+                      fontSize: "0.6875rem",
                       color: "var(--ink-4)",
                     }}
                   >
@@ -240,7 +240,7 @@ export default async function AdminDashboard() {
                   paddingTop: 16,
                   borderTop: "1px dashed var(--rule)",
                   fontFamily: "var(--mono)",
-                  fontSize: 11,
+                  fontSize: "0.6875rem",
                   color: "var(--ink-4)",
                   lineHeight: 1.65,
                 }}

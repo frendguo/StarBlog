@@ -85,7 +85,7 @@ export function PostEditor({ tags, initial, mode }: Props) {
           <div
             style={{
               fontFamily: "var(--mono)",
-              fontSize: 11,
+              fontSize: "0.6875rem",
               color: "var(--ink-4)",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -96,7 +96,7 @@ export function PostEditor({ tags, initial, mode }: Props) {
           <div
             style={{
               fontFamily: "var(--serif)",
-              fontSize: 18,
+              fontSize: "1.125rem",
               fontWeight: 500,
             }}
           >
@@ -108,7 +108,7 @@ export function PostEditor({ tags, initial, mode }: Props) {
             <span
               style={{
                 fontFamily: "var(--mono)",
-                fontSize: 11,
+                fontSize: "0.6875rem",
                 color: "var(--ink-4)",
               }}
             >
@@ -149,7 +149,7 @@ export function PostEditor({ tags, initial, mode }: Props) {
               style={{
                 border: "none",
                 fontFamily: "var(--serif)",
-                fontSize: 32,
+                fontSize: "2rem",
                 fontWeight: 600,
                 padding: "0 0 8px",
                 marginBottom: 12,
@@ -164,7 +164,7 @@ export function PostEditor({ tags, initial, mode }: Props) {
               style={{
                 border: "none",
                 fontFamily: "var(--serif)",
-                fontSize: 16,
+                fontSize: "1rem",
                 fontStyle: "italic",
                 color: "var(--ink-3)",
                 padding: "0 0 8px",
@@ -240,7 +240,7 @@ export function PostEditor({ tags, initial, mode }: Props) {
               <span
                 style={{
                   fontFamily: "var(--mono)",
-                  fontSize: 11,
+                  fontSize: "0.6875rem",
                   color: "var(--ink-4)",
                   alignSelf: "center",
                 }}
@@ -259,7 +259,7 @@ export function PostEditor({ tags, initial, mode }: Props) {
                   width: "100%",
                   minHeight: 480,
                   fontFamily: "var(--mono)",
-                  fontSize: 13.5,
+                  fontSize: "0.8438rem",
                   lineHeight: 1.7,
                   resize: "vertical",
                   whiteSpace: "pre-wrap",
@@ -358,7 +358,7 @@ export function PostEditor({ tags, initial, mode }: Props) {
               <div
                 style={{
                   fontFamily: "var(--mono)",
-                  fontSize: 12,
+                  fontSize: "0.75rem",
                   color: "var(--ink-3)",
                   lineHeight: 1.8,
                 }}

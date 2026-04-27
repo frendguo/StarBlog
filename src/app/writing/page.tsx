@@ -65,7 +65,7 @@ export default async function WritingIndex({ searchParams }: SearchParams) {
             <h3
               style={{
                 fontFamily: "var(--serif)",
-                fontSize: 38,
+                fontSize: "2.375rem",
                 fontWeight: 500,
                 color: "var(--ink)",
                 letterSpacing: "-0.02em",
@@ -77,7 +77,7 @@ export default async function WritingIndex({ searchParams }: SearchParams) {
             <span
               style={{
                 fontFamily: "var(--mono)",
-                fontSize: 11,
+                fontSize: "0.6875rem",
                 color: "var(--ink-4)",
               }}
             >
@@ -106,7 +106,7 @@ export default async function WritingIndex({ searchParams }: SearchParams) {
                 <div
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 11,
+                    fontSize: "0.6875rem",
                     color: "var(--ink-4)",
                   }}
                 >
@@ -115,7 +115,7 @@ export default async function WritingIndex({ searchParams }: SearchParams) {
                 <div
                   style={{
                     fontFamily: "var(--serif)",
-                    fontSize: 17,
+                    fontSize: "1.0625rem",
                     color: "var(--ink)",
                     letterSpacing: "-0.005em",
                   }}
@@ -133,7 +133,7 @@ export default async function WritingIndex({ searchParams }: SearchParams) {
                 <div
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 11,
+                    fontSize: "0.6875rem",
                     color: "var(--ink-4)",
                     textAlign: "right",
                   }}
@@ -153,7 +153,7 @@ export default async function WritingIndex({ searchParams }: SearchParams) {
             fontFamily: "var(--serif)",
             color: "var(--ink-4)",
             textAlign: "center",
-            fontSize: 16,
+            fontSize: "1rem",
           }}
         >
           这个分类下还没有文章。

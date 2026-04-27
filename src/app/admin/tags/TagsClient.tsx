@@ -82,7 +82,7 @@ export function TagsClient({ initialTags }: { initialTags: TagRow[] }) {
           <div
             style={{
               fontFamily: "var(--mono)",
-              fontSize: 11,
+              fontSize: "0.6875rem",
               color: "var(--ink-4)",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -93,7 +93,7 @@ export function TagsClient({ initialTags }: { initialTags: TagRow[] }) {
           <div
             style={{
               fontFamily: "var(--serif)",
-              fontSize: 18,
+              fontSize: "1.125rem",
               fontWeight: 500,
             }}
           >
@@ -113,7 +113,7 @@ export function TagsClient({ initialTags }: { initialTags: TagRow[] }) {
               border: "1px solid rgba(220, 38, 38, .25)",
               color: "#DC2626",
               fontFamily: "var(--mono)",
-              fontSize: 12,
+              fontSize: "0.75rem",
             }}
           >
             {err}
@@ -149,14 +149,14 @@ export function TagsClient({ initialTags }: { initialTags: TagRow[] }) {
                     marginBottom: 8,
                   }}
                 >
-                  <span className={`tag ${t.color}`} style={{ fontSize: 13 }}>
+                  <span className={`tag ${t.color}`} style={{ fontSize: "0.8125rem" }}>
                     #{t.label}
                   </span>
                   <span
                     style={{
                       marginLeft: "auto",
                       fontFamily: "var(--mono)",
-                      fontSize: 11,
+                      fontSize: "0.6875rem",
                       color: "var(--ink-4)",
                     }}
                   >
@@ -166,7 +166,7 @@ export function TagsClient({ initialTags }: { initialTags: TagRow[] }) {
                 <p
                   style={{
                     fontFamily: "var(--serif)",
-                    fontSize: 13.5,
+                    fontSize: "0.8438rem",
                     color: "var(--ink-3)",
                     lineHeight: 1.5,
                     marginBottom: 12,
@@ -178,7 +178,7 @@ export function TagsClient({ initialTags }: { initialTags: TagRow[] }) {
                   <button
                     type="button"
                     className="btn"
-                    style={{ fontSize: 11, padding: "4px 10px" }}
+                    style={{ fontSize: "0.6875rem", padding: "4px 10px" }}
                     onClick={() =>
                       setEditing({
                         id: t.id,
@@ -195,7 +195,7 @@ export function TagsClient({ initialTags }: { initialTags: TagRow[] }) {
                     type="button"
                     className="btn"
                     style={{
-                      fontSize: 11,
+                      fontSize: "0.6875rem",
                       padding: "4px 10px",
                       color: "#DC2626",
                       borderColor: "rgba(220,38,38,.3)",
@@ -289,7 +289,7 @@ function TagForm({ value, onChange, onSave, onCancel, pending, editing }: TagFor
             type="button"
             className="btn"
             onClick={onCancel}
-            style={{ fontSize: 12 }}
+            style={{ fontSize: "0.75rem" }}
           >
             取消
           </button>
@@ -300,7 +300,7 @@ function TagForm({ value, onChange, onSave, onCancel, pending, editing }: TagFor
           className="btn btn-primary"
           onClick={onSave}
           disabled={pending}
-          style={{ fontSize: 12 }}
+          style={{ fontSize: "0.75rem" }}
         >
           {editing ? "保存" : "创建"}
         </button>

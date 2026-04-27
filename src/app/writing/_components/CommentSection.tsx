@@ -95,7 +95,7 @@ export function CommentSection({ postId, initialComments }: Props) {
                 <span
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 12.5,
+                    fontSize: "0.7813rem",
                     color: "var(--ink-2)",
                     fontWeight: 600,
                   }}
@@ -105,7 +105,7 @@ export function CommentSection({ postId, initialComments }: Props) {
                 <span
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 11,
+                    fontSize: "0.6875rem",
                     color: "var(--ink-4)",
                   }}
                 >
@@ -115,7 +115,7 @@ export function CommentSection({ postId, initialComments }: Props) {
               <p
                 style={{
                   fontFamily: "var(--serif)",
-                  fontSize: 15,
+                  fontSize: "0.9375rem",
                   lineHeight: 1.6,
                   color: "var(--ink-2)",
                   whiteSpace: "pre-wrap",
@@ -140,7 +140,7 @@ export function CommentSection({ postId, initialComments }: Props) {
         <div
           style={{
             fontFamily: "var(--mono)",
-            fontSize: 11,
+            fontSize: "0.6875rem",
             color: "var(--ink-4)",
             letterSpacing: "0.1em",
             marginBottom: 12,
@@ -187,7 +187,7 @@ export function CommentSection({ postId, initialComments }: Props) {
           style={{
             width: "100%",
             fontFamily: "var(--serif)",
-            fontSize: 14,
+            fontSize: "0.875rem",
             lineHeight: 1.6,
             resize: "vertical",
             marginBottom: 10,
@@ -221,14 +221,14 @@ export function CommentSection({ postId, initialComments }: Props) {
             type="submit"
             className="btn btn-primary"
             disabled={pending}
-            style={{ fontSize: 13 }}
+            style={{ fontSize: "0.8125rem" }}
           >
             {pending ? "提交中…" : "提交 →"}
           </button>
           <span
             style={{
               fontFamily: "var(--mono)",
-              fontSize: 11,
+              fontSize: "0.6875rem",
               color:
                 msg?.kind === "err"
                   ? "#DC2626"

@@ -27,7 +27,7 @@ export function WritingFilter({ tags, activeTag, totalCount }: Props) {
         style={{
           cursor: "pointer",
           padding: "5px 11px",
-          fontSize: 12,
+          fontSize: "0.75rem",
           background: activeTag === "all" ? "var(--ink)" : "var(--bg-soft)",
           color: activeTag === "all" ? "var(--bg)" : "var(--ink-3)",
           borderColor: activeTag === "all" ? "var(--ink)" : "var(--rule)",
@@ -44,7 +44,7 @@ export function WritingFilter({ tags, activeTag, totalCount }: Props) {
           style={{
             cursor: "pointer",
             padding: "5px 11px",
-            fontSize: 12,
+            fontSize: "0.75rem",
             textDecoration: "none",
             ...(activeTag === t.id
               ? {

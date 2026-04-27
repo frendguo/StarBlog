@@ -26,7 +26,7 @@ export function PostRowActions({ id, slug, status, pinned }: Props) {
       <Link
         href={`/admin/posts/${id}`}
         className="btn"
-        style={{ fontSize: 11, padding: "4px 8px" }}
+        style={{ fontSize: "0.6875rem", padding: "4px 8px" }}
       >
         ✎
       </Link>
@@ -34,7 +34,7 @@ export function PostRowActions({ id, slug, status, pinned }: Props) {
         href={`/writing/${slug}`}
         target="_blank"
         className="btn"
-        style={{ fontSize: 11, padding: "4px 8px" }}
+        style={{ fontSize: "0.6875rem", padding: "4px 8px" }}
         title="预览"
       >
         ↗
@@ -42,7 +42,7 @@ export function PostRowActions({ id, slug, status, pinned }: Props) {
       <button
         className="btn"
         style={{
-          fontSize: 11,
+          fontSize: "0.6875rem",
           padding: "4px 8px",
           color: pinned ? "var(--accent)" : undefined,
           borderColor: pinned ? "var(--accent)" : undefined,
@@ -56,7 +56,7 @@ export function PostRowActions({ id, slug, status, pinned }: Props) {
       {status !== "published" && (
         <button
           className="btn"
-          style={{ fontSize: 11, padding: "4px 8px" }}
+          style={{ fontSize: "0.6875rem", padding: "4px 8px" }}
           onClick={() => start(() => quickPublish(id))}
           disabled={pending}
           title="立即发布"
@@ -67,7 +67,7 @@ export function PostRowActions({ id, slug, status, pinned }: Props) {
       <button
         className="btn"
         style={{
-          fontSize: 11,
+          fontSize: "0.6875rem",
           padding: "4px 8px",
           color: "#DC2626",
           borderColor: "rgba(220,38,38,.3)",

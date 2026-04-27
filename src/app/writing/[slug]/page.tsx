@@ -77,7 +77,7 @@ export default async function ArticlePage({ params }: Params) {
               <span
                 style={{
                   fontFamily: "var(--mono)",
-                  fontSize: 11,
+                  fontSize: "0.6875rem",
                   color: "var(--ink-3)",
                   letterSpacing: "0.05em",
                 }}
@@ -88,7 +88,7 @@ export default async function ArticlePage({ params }: Params) {
             <span
               style={{
                 fontFamily: "var(--mono)",
-                fontSize: 11,
+                fontSize: "0.6875rem",
                 color: "var(--ink-4)",
               }}
             >
@@ -99,7 +99,7 @@ export default async function ArticlePage({ params }: Params) {
           <h1
             style={{
               fontFamily: "var(--serif)",
-              fontSize: 46,
+              fontSize: "2.875rem",
               fontWeight: 600,
               lineHeight: 1.1,
               letterSpacing: "-0.025em",
@@ -114,7 +114,7 @@ export default async function ArticlePage({ params }: Params) {
           <p
             style={{
               fontFamily: "var(--serif)",
-              fontSize: 19,
+              fontSize: "1.1875rem",
               fontStyle: "italic",
               lineHeight: 1.5,
               color: "var(--ink-3)",
@@ -134,7 +134,7 @@ export default async function ArticlePage({ params }: Params) {
               borderTop: "1px solid var(--rule)",
               borderBottom: "1px solid var(--rule)",
               fontFamily: "var(--mono)",
-              fontSize: 11,
+              fontSize: "0.6875rem",
               color: "var(--ink-3)",
               marginBottom: 56,
               flexWrap: "wrap",
@@ -163,7 +163,7 @@ export default async function ArticlePage({ params }: Params) {
             <span
               style={{
                 fontFamily: "var(--mono)",
-                fontSize: 11,
+                fontSize: "0.6875rem",
                 color: "var(--ink-4)",
                 letterSpacing: "0.06em",
               }}
@@ -196,7 +196,7 @@ export default async function ArticlePage({ params }: Params) {
                 <div
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 10,
+                    fontSize: "0.625rem",
                     color: "var(--ink-4)",
                     marginBottom: 6,
                     letterSpacing: "0.1em",
@@ -207,7 +207,7 @@ export default async function ArticlePage({ params }: Params) {
                 <div
                   style={{
                     fontFamily: "var(--serif)",
-                    fontSize: 15,
+                    fontSize: "0.9375rem",
                     color: "var(--ink)",
                     lineHeight: 1.3,
                   }}
@@ -231,7 +231,7 @@ export default async function ArticlePage({ params }: Params) {
                 <div
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 10,
+                    fontSize: "0.625rem",
                     color: "var(--ink-4)",
                     marginBottom: 6,
                     letterSpacing: "0.1em",
@@ -242,7 +242,7 @@ export default async function ArticlePage({ params }: Params) {
                 <div
                   style={{
                     fontFamily: "var(--serif)",
-                    fontSize: 15,
+                    fontSize: "0.9375rem",
                     color: "var(--ink)",
                     lineHeight: 1.3,
                   }}
@@ -273,7 +273,7 @@ export default async function ArticlePage({ params }: Params) {
                     borderBottom: "1px dashed var(--rule)",
                     cursor: "pointer",
                     fontFamily: "var(--serif)",
-                    fontSize: 16,
+                    fontSize: "1rem",
                     color: "var(--ink-2)",
                     textDecoration: "none",
                   }}
@@ -281,7 +281,7 @@ export default async function ArticlePage({ params }: Params) {
                   <span
                     style={{
                       fontFamily: "var(--mono)",
-                      fontSize: 11,
+                      fontSize: "0.6875rem",
                       color: "var(--ink-4)",
                       flexShrink: 0,
                       width: 60,
@@ -298,7 +298,7 @@ export default async function ArticlePage({ params }: Params) {
                   <span
                     style={{
                       fontFamily: "var(--mono)",
-                      fontSize: 11,
+                      fontSize: "0.6875rem",
                       color: "var(--ink-4)",
                     }}
                   >
