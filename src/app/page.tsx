@@ -19,8 +19,7 @@ export default async function HomePage() {
   const totalWords = posts.reduce((s, p) => s + p.words, 0);
 
   return (
-    <div>
-      {/* HERO */}
+    <div className="home-page">
       <section className="hero">
         <div
           className="ambient"
@@ -71,6 +70,13 @@ export default async function HomePage() {
             </Link>
           </div>
 
+          <div className="home-quick-jump">
+            <Link href="#featured" className="home-quick-link">精选文章</Link>
+            <Link href="#recent" className="home-quick-link">最近更新</Link>
+            <Link href="/writing" className="home-quick-link">全部文章</Link>
+            <Link href="/writing" className="home-quick-link">长文阅读</Link>
+          </div>
+
           </div>
 
           <div className="hero-col-aside">
@@ -88,29 +94,13 @@ export default async function HomePage() {
 
       {/* FEATURED */}
       {featured && (
-        <section
-          style={{ maxWidth: 1200, margin: "40px auto 0", padding: "0 32px" }}
-        >
+        <section id="featured" className="home-section">
           <div className="section-label">
             <span style={{ color: "var(--accent)" }}>★</span> Featured
           </div>
           <Link
             href={`/writing/${featured.slug}`}
             className="featured-hero"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 240px",
-              gap: 32,
-              padding: 32,
-              borderRadius: 16,
-              background:
-                "linear-gradient(135deg, var(--bg-tint-1) 0%, var(--bg-tint-5) 100%)",
-              border: "1px solid var(--rule)",
-              cursor: "pointer",
-              transition: "transform .25s ease",
-              color: "inherit",
-              textDecoration: "none",
-            }}
           >
             <div>
               <div
@@ -168,20 +158,7 @@ export default async function HomePage() {
                 {featured.readTime} min read · 继续阅读 →
               </div>
             </div>
-            <div
-              className="featured-side"
-              style={{
-                background: "#fff",
-                borderRadius: 12,
-                padding: 20,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                border: "1px solid rgba(0,0,0,.06)",
-                fontFamily: "var(--mono)",
-                fontSize: "0.7188rem",
-              }}
-            >
+            <div className="featured-side">
               <div>
                 <div style={{ color: "#999", marginBottom: 8 }}>{"// in this piece"}</div>
                 <div style={{ color: "#666", lineHeight: 1.7 }}>
@@ -205,17 +182,8 @@ export default async function HomePage() {
       )}
 
       {/* RECENT */}
-      <section
-        style={{ maxWidth: 1200, margin: "64px auto 0", padding: "0 32px" }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-            marginBottom: 22,
-          }}
-        >
+      <section id="recent" className="home-section">
+        <div className="recent-head">
           <span
             style={{
               fontFamily: "var(--mono)",
@@ -236,23 +204,12 @@ export default async function HomePage() {
             View all {posts.length} →
           </Link>
         </div>
-        <div>
+        <div className="recent-list">
           {recent.map((p) => (
             <HoverRow
               key={p.slug}
               href={`/writing/${p.slug}`}
               className="recent-row"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "92px 1fr 100px 60px",
-                gap: 20,
-                padding: "18px 16px",
-                borderBottom: "1px solid var(--rule)",
-                cursor: "pointer",
-                alignItems: "center",
-                borderRadius: 10,
-                transition: "background .15s, transform .15s",
-              }}
             >
               <div
                 style={{
@@ -287,7 +244,7 @@ export default async function HomePage() {
                   {p.excerpt.slice(0, 92)}…
                 </p>
               </div>
-              <span className={`tag ${p.tagId}`} style={{ justifySelf: "start" }}>
+              <span className={`tag ${p.tagId} recent-row-tag`} style={{ justifySelf: "start" }}>
                 {p.tagLabel}
               </span>
               <span
@@ -306,12 +263,8 @@ export default async function HomePage() {
       </section>
 
       {/* TOPICS strip */}
-      <section
-        style={{ maxWidth: 1200, margin: "80px auto 0", padding: "0 32px" }}
-      >
-        <div
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}
-        >
+      <section className="home-section">
+        <div className="home-meta-grid">
           <div>
             <div className="section-label">
               <span>#</span> Topics
@@ -404,25 +357,8 @@ export default async function HomePage() {
       </section>
 
       {/* NEWSLETTER */}
-      <section
-        id="newsletter"
-        style={{ maxWidth: 1200, margin: "80px auto 0", padding: "0 32px", scrollMarginTop: 80 }}
-      >
-        <div
-          className="newsletter-band"
-          style={{
-            background: "#16161A",
-            color: "#FBF9F4",
-            borderRadius: 20,
-            padding: "40px 40px",
-            display: "grid",
-            gridTemplateColumns: "1fr 320px",
-            gap: 32,
-            alignItems: "center",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
+      <section id="newsletter" className="home-section" style={{ scrollMarginTop: 80 }}>
+        <div className="newsletter-band">
           <div
             style={{
               position: "absolute",
@@ -473,20 +409,7 @@ export default async function HomePage() {
       </section>
 
       {/* FOOTER */}
-      <footer
-        style={{
-          maxWidth: 1200,
-          margin: "80px auto 0",
-          padding: 32,
-          borderTop: "1px solid var(--rule)",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          fontFamily: "var(--mono)",
-          fontSize: "0.7188rem",
-          color: "var(--ink-4)",
-        }}
-      >
+      <footer className="home-footer">
         <span>© {new Date().getFullYear()} {siteConfig.author.name} · built with care</span>
         <span>
           v3.0 · last deploy <span style={{ color: "var(--accent-3)" }}>●</span>{" "}

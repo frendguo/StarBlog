@@ -5,6 +5,8 @@ import { fmtDate } from "@/lib/format";
 import { extractToc, renderMarkdown } from "@/lib/markdown";
 import { getAllPosts, getApprovedComments, getPostBySlug } from "@/lib/posts";
 import { ArticleProgress } from "../_components/ArticleProgress";
+import { ArticleBottomBar } from "../_components/ArticleBottomBar";
+import { ArticleMobileTools } from "../_components/ArticleMobileTools";
 import { CommentSection } from "../_components/CommentSection";
 import { TocSidebar } from "../_components/TocSidebar";
 
@@ -51,19 +53,11 @@ export default async function ArticlePage({ params }: Params) {
   return (
     <div>
       <ArticleProgress />
+      <ArticleBottomBar hasToc={toc.length > 0} />
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 720px) 220px",
-          gap: 48,
-          padding: "56px 48px 120px",
-          maxWidth: 1040,
-          margin: "0 auto",
-          justifyContent: "center",
-        }}
-      >
-        <article style={{ minWidth: 0 }}>
+      <div className="article-layout">
+        <article id="article-body" className="article-main">
+          <ArticleMobileTools hasToc={toc.length > 0} />
           <div
             style={{
               marginBottom: 24,
@@ -145,6 +139,19 @@ export default async function ArticlePage({ params }: Params) {
             <span>≡ {post.words.toLocaleString()} words</span>
             <span>↺ updated {fmtDate(post.updatedAt)}</span>
           </div>
+
+          {toc.length > 0 && (
+            <div id="article-toc" className="article-toc-inline">
+              <div className="article-toc-label">目录</div>
+              <div className="article-toc-inline-list">
+                {toc.map((item) => (
+                  <Link key={item.id} href={`#${item.id}`} className="article-toc-inline-link">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div
             className="prose"
@@ -311,7 +318,7 @@ export default async function ArticlePage({ params }: Params) {
           )}
         </article>
 
-        <aside style={{ position: "relative" }}>
+        <aside className="article-sidebar">
           <TocSidebar items={toc} />
         </aside>
       </div>

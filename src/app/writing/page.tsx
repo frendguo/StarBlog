@@ -53,15 +53,8 @@ export default async function WritingIndex({ searchParams }: SearchParams) {
       />
 
       {years.map((year) => (
-        <div key={year} style={{ marginBottom: 56 }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "baseline",
-              gap: 16,
-              marginBottom: 20,
-            }}
-          >
+        <div key={year} className="writing-year">
+          <div className="writing-year-head">
             <h3
               style={{
                 fontFamily: "var(--serif)",
@@ -85,60 +78,39 @@ export default async function WritingIndex({ searchParams }: SearchParams) {
               {byYear[year].length === 1 ? "piece" : "pieces"}
             </span>
           </div>
-          <div>
+          <div className="writing-list">
             {byYear[year].map((p) => (
               <a
                 key={p.slug}
                 href={`/writing/${p.slug}`}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "76px 1fr 110px 60px",
-                  gap: 20,
-                  padding: "14px 0",
-                  borderBottom: "1px dashed var(--rule)",
-                  cursor: "pointer",
-                  alignItems: "center",
-                  transition: "background .12s",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
+                className="writing-row"
               >
-                <div
-                  style={{
-                    fontFamily: "var(--mono)",
-                    fontSize: "0.6875rem",
-                    color: "var(--ink-4)",
-                  }}
-                >
+                <div className="writing-row-date">
                   {p.publishedAt ? fmtMonthDay(p.publishedAt) : ""}
                 </div>
-                <div
-                  style={{
-                    fontFamily: "var(--serif)",
-                    fontSize: "1.0625rem",
-                    color: "var(--ink)",
-                    letterSpacing: "-0.005em",
-                  }}
-                >
-                  {p.pinned && (
-                    <span style={{ color: "var(--accent)", marginRight: 6 }}>
-                      ★
-                    </span>
-                  )}
-                  {p.title}
+                <div className="writing-row-main">
+                  <div className="writing-row-title">
+                    {p.pinned && (
+                      <span style={{ color: "var(--accent)", marginRight: 6 }}>
+                        ★
+                      </span>
+                    )}
+                    {p.title}
+                  </div>
+                  <div className="writing-row-meta">
+                    <span>{p.publishedAt ? fmtMonthDay(p.publishedAt) : ""}</span>
+                    <span>{p.readTime} min</span>
+                    <span>{p.tagLabel}</span>
+                  </div>
                 </div>
-                <div>
+                <div className="writing-row-tag-wrap">
                   <span className={`tag ${p.tagId}`}>{p.tagLabel}</span>
                 </div>
-                <div
-                  style={{
-                    fontFamily: "var(--mono)",
-                    fontSize: "0.6875rem",
-                    color: "var(--ink-4)",
-                    textAlign: "right",
-                  }}
-                >
+                <div className="writing-row-readtime">
                   {p.readTime} min
+                </div>
+                <div className="writing-row-thumb" aria-hidden="true">
+                  <span>{p.tagLabel.slice(0, 2)}</span>
                 </div>
               </a>
             ))}

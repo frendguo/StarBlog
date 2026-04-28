@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SectionTabs } from "@/components/SectionTabs";
 import { getAllProjects } from "@/lib/posts";
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export default async function ProjectsPage() {
   const projects = await getAllProjects();
   return (
     <div className="page">
+      <SectionTabs />
       <div className="page-eyebrow">{projects.length} repos · open source</div>
       <h1 className="page-title">Projects</h1>
       <p className="page-lede">
@@ -30,16 +32,8 @@ export default async function ProjectsPage() {
         {projects.map((p) => {
           const palette = STATE_PALETTE[p.state] ?? { c: "#888", l: p.state };
           return (
-            <div key={p.name} className="card" style={{ padding: 22 }}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  marginBottom: 8,
-                  flexWrap: "wrap",
-                }}
-              >
+            <div key={p.name} className="card project-card" style={{ padding: 22 }}>
+              <div className="project-card-head">
                 <span
                   style={{
                     fontFamily: "var(--mono)",
@@ -73,16 +67,7 @@ export default async function ProjectsPage() {
                   />
                   {palette.l}
                 </span>
-                <span
-                  style={{
-                    marginLeft: "auto",
-                    display: "flex",
-                    gap: 14,
-                    fontFamily: "var(--mono)",
-                    fontSize: "0.6875rem",
-                    color: "var(--ink-4)",
-                  }}
-                >
+                <span className="project-card-metrics">
                   <span>
                     <span style={{ color: "var(--ink-3)" }}>⌥</span> {p.language}
                   </span>
