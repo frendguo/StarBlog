@@ -655,9 +655,13 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   display: grid;
 }
 
-/* Shiki dual-theme: tokens carry both --shiki-light and --shiki-dark inline. */
-.prose pre span { color: var(--shiki-light); }
-[data-theme="dark"] .prose pre span { color: var(--shiki-dark); }
+/* Shiki dual-theme via @shikijs/rehype/core: light 走 inline color，dark 走 --shiki-dark
+   变量。inline style 优先级高于 class，dark 切换需 !important 覆盖。 */
+[data-theme="dark"] .prose pre,
+[data-theme="dark"] .prose pre span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg, transparent) !important;
+}
 
 .prose pre code .line { min-height: 1em; }
 .prose pre [data-line-numbers] > .line::before {
