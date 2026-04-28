@@ -55,11 +55,12 @@ export default async function ArticlePage({ params }: Params) {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 220px",
-          gap: 56,
-          padding: "56px 56px 120px",
-          maxWidth: 1100,
+          gridTemplateColumns: "minmax(0, 720px) 220px",
+          gap: 48,
+          padding: "56px 48px 120px",
+          maxWidth: 1040,
           margin: "0 auto",
+          justifyContent: "center",
         }}
       >
         <article style={{ minWidth: 0 }}>
@@ -99,12 +100,12 @@ export default async function ArticlePage({ params }: Params) {
           <h1
             style={{
               fontFamily: "var(--serif)",
-              fontSize: "2.875rem",
+              fontSize: "2.25rem",
               fontWeight: 600,
-              lineHeight: 1.1,
+              lineHeight: 1.15,
               letterSpacing: "-0.025em",
               color: "var(--ink)",
-              marginBottom: 20,
+              marginBottom: 18,
               textWrap: "pretty",
             }}
           >
@@ -114,13 +115,13 @@ export default async function ArticlePage({ params }: Params) {
           <p
             style={{
               fontFamily: "var(--serif)",
-              fontSize: "1.1875rem",
+              fontSize: "1.0625rem",
               fontStyle: "italic",
-              lineHeight: 1.5,
+              lineHeight: 1.55,
               color: "var(--ink-3)",
-              marginBottom: 36,
-              paddingLeft: 18,
-              borderLeft: "2px solid var(--accent)",
+              marginBottom: 28,
+              paddingLeft: 14,
+              borderLeft: "2px solid var(--rule)",
             }}
           >
             {post.excerpt}
