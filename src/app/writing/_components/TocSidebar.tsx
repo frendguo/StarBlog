@@ -9,6 +9,7 @@ interface Props {
 
 export function TocSidebar({ items }: Props) {
   const [active, setActive] = useState(items[0]?.id ?? "");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     if (items.length === 0) return;
@@ -30,44 +31,48 @@ export function TocSidebar({ items }: Props) {
     const el = document.getElementById(id);
     if (el) {
       window.scrollTo({ top: el.offsetTop - 80, behavior: "smooth" });
+      setMobileOpen(false);
     }
   };
 
   return (
-    <div style={{ position: "sticky", top: 100 }}>
+    <div className="toc-sidebar">
       {items.length > 0 && (
         <>
-          <div
-            className="nav-label"
-            style={{
-              color: "var(--ink-4)",
-              marginBottom: 14,
-              fontFamily: "var(--mono)",
-              fontSize: "0.6875rem",
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-            }}
+          <button
+            type="button"
+            className="toc-mobile-toggle"
+            onClick={() => setMobileOpen((open) => !open)}
+            aria-expanded={mobileOpen}
+            aria-controls="toc-mobile-panel"
           >
-            On this page
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            <span className="toc-label">On this page</span>
+            <span>{mobileOpen ? "收起" : "展开"}</span>
+          </button>
+          <div className="toc-desktop-list">
             {items.map((t) => (
               <button
                 key={t.id}
                 onClick={() => scrollTo(t.id)}
-                style={{
-                  fontFamily: "var(--mono)",
-                  fontSize: "0.75rem",
-                  textAlign: "left",
-                  padding: `5px 0 5px ${12 + (t.depth - 2) * 12}px`,
-                  borderLeft: `2px solid ${
-                    active === t.id ? "var(--accent)" : "var(--rule)"
-                  }`,
-                  color: active === t.id ? "var(--ink)" : "var(--ink-3)",
-                  cursor: "pointer",
-                  transition: "all .12s",
-                  background: "transparent",
-                }}
+                className={`toc-item ${active === t.id ? "active" : ""}`}
+                style={{ paddingLeft: `${12 + (t.depth - 2) * 12}px` }}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+          <div
+            id="toc-mobile-panel"
+            className={`toc-mobile-panel ${mobileOpen ? "open" : ""}`}
+            aria-hidden={!mobileOpen}
+          >
+            {items.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => scrollTo(t.id)}
+                className={`toc-item ${active === t.id ? "active" : ""}`}
+                style={{ paddingLeft: `${12 + (t.depth - 2) * 12}px` }}
               >
                 {t.label}
               </button>
@@ -76,66 +81,19 @@ export function TocSidebar({ items }: Props) {
         </>
       )}
 
-      <div
-        style={{
-          marginTop: 32,
-          paddingTop: 20,
-          borderTop: "1px solid var(--rule)",
-        }}
-      >
-        <div
-          style={{
-            color: "var(--ink-4)",
-            marginBottom: 12,
-            fontFamily: "var(--mono)",
-            fontSize: "0.6875rem",
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-          }}
-        >
-          Share
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div className="toc-utility-block">
+        <div className="toc-label">Share</div>
+        <div className="toc-utility-list">
           <CopyLink />
         </div>
       </div>
 
-      <div
-        style={{
-          marginTop: 24,
-          padding: 14,
-          background: "var(--bg-soft)",
-          borderRadius: 6,
-          fontFamily: "var(--mono)",
-          fontSize: "0.6563rem",
-          color: "var(--ink-3)",
-          lineHeight: 1.5,
-        }}
-      >
-        <div style={{ color: "var(--accent)", marginBottom: 4 }}>★ TIP</div>
+      <div className="toc-tip-card">
+        <div className="toc-tip-title">★ TIP</div>
         用{" "}
-        <kbd
-          style={{
-            background: "var(--bg-card)",
-            padding: "1px 4px",
-            borderRadius: 2,
-            border: "1px solid var(--rule)",
-          }}
-        >
-          ⌘K
-        </kbd>{" "}
+        <kbd className="toc-kbd">⌘K</kbd>{" "}
         搜索；
-        <kbd
-          style={{
-            background: "var(--bg-card)",
-            padding: "1px 4px",
-            borderRadius: 2,
-            border: "1px solid var(--rule)",
-            marginLeft: 4,
-          }}
-        >
-          g w
-        </kbd>{" "}
+        <kbd className="toc-kbd toc-kbd-spaced">g w</kbd>{" "}
         回 Writing。
       </div>
     </div>
@@ -156,8 +114,7 @@ function CopyLink() {
   };
   return (
     <button
-      className="btn"
-      style={{ justifyContent: "flex-start", fontSize: "0.6875rem" }}
+      className="btn toc-copy-btn"
       onClick={onCopy}
     >
       {copied ? "✓ Copied" : "⎘ Copy link"}

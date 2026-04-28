@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NAV_ITEMS, siteConfig } from "@/lib/site-config";
 import { dispatchOpenSearch } from "@/lib/client-events";
 
@@ -10,6 +10,7 @@ export function TopNav() {
   const pathname = usePathname();
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [menuOpen, setMenuOpen] = useState(false);
+  const mobileSheetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const t = (document.documentElement.dataset.theme as "light" | "dark") || "light";
@@ -27,6 +28,18 @@ export function TopNav() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onPointerDown = (event: PointerEvent) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (mobileSheetRef.current?.contains(target)) return;
+      setMenuOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
   }, [menuOpen]);
 
   const onToggle = () => {
@@ -142,18 +155,19 @@ export function TopNav() {
 
       <div
         id="mobile-nav-sheet"
+        ref={mobileSheetRef}
         className={`mobile-nav-sheet ${menuOpen ? "open" : ""}`}
         aria-hidden={!menuOpen}
       >
         <div className="mobile-nav-handle" />
-        <span>
-          Navigation
-        </span>
-        <button type="button" className="icon-btn" onClick={() => setMenuOpen(false)} aria-label="Close menu">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
-            <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" strokeLinecap="round" />
-          </svg>
-        </button>
+        <div className="mobile-nav-header">
+          <span className="mobile-nav-title">Navigation</span>
+          <button type="button" className="icon-btn" onClick={() => setMenuOpen(false)} aria-label="Close menu">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+              <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
         <nav className="mobile-nav-list" aria-label="Mobile navigation">
           {NAV_ITEMS.map((it) => (
             <Link
