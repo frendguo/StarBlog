@@ -1,0 +1,28 @@
+.github/dependabot.yml
+  ef3ee71a4ec560cd 1-56
+.github/workflows/ci.yml
+  ef3ee71a4ec560cd 1-45
+.github/workflows/deploy.yml
+  ef3ee71a4ec560cd 1-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.11",
+  "base_commit_sha": "5dedcb5e92512928ca6ec18197335c28d27ca9eb",
+  "prompts": {
+    "ef3ee71a4ec560cd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "57a53434-dd80-4081-9a07-0669937e4d09",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 146,
+      "total_deletions": 0,
+      "accepted_lines": 146,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/8e13961240505a76b8063f82ee371a4498301c29e9a08eef60ed3b5bfd6f2514"
+    }
+  }
+}
