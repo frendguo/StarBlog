@@ -1,0 +1,56 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Shanghai
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+      include: scope
+    groups:
+      next:
+        patterns:
+          - next
+          - eslint-config-next
+          - react
+          - react-dom
+          - "@types/react"
+          - "@types/react-dom"
+      cloudflare:
+        patterns:
+          - "@opennextjs/*"
+          - wrangler
+      drizzle:
+        patterns:
+          - drizzle-orm
+          - drizzle-kit
+      shiki:
+        patterns:
+          - shiki
+          - "@shikijs/*"
+      remark-rehype:
+        patterns:
+          - unified
+          - remark-*
+          - rehype-*
+      dev-types:
+        patterns:
+          - "@types/*"
+        exclude-patterns:
+          - "@types/react"
+          - "@types/react-dom"
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Shanghai
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(ci)"
