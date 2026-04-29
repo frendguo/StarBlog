@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SectionTabs } from "@/components/SectionTabs";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -10,8 +11,24 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="page" style={{ maxWidth: 720 }}>
+      <SectionTabs />
       <div className="page-eyebrow">/about · 介绍我自己</div>
       <h1 className="page-title">关于</h1>
+      <div className="about-intro-card">
+        <div className="about-avatar">郭</div>
+        <div>
+          <h2 className="about-intro-title">
+            你好，我是 <span style={{ color: "var(--accent)" }}>{siteConfig.author.name}</span>
+          </h2>
+          <p className="about-intro-copy">
+            常驻 {siteConfig.author.location}，2018 年加入开发。主栈是系统软件、C++、Windows 与 AI 工程化。
+          </p>
+          <div className="about-intro-meta">
+            <span>📍 {siteConfig.author.location}</span>
+            <span>⌘ 2018 加入开发</span>
+          </div>
+        </div>
+      </div>
 
       <div className="prose" style={{ maxWidth: "none" }}>
         <p>

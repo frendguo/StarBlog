@@ -165,7 +165,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
     <div className="palette-overlay" onClick={close}>
       <div className="palette" onClick={(e) => e.stopPropagation()}>
         <div className="palette-input-row">
-          <span style={{ color: "var(--accent)", fontFamily: "var(--mono)", fontSize: "0.875rem" }}>›</span>
+          <span className="palette-input-prefix">›</span>
           <input
             ref={inputRef}
             className="palette-input"
@@ -176,33 +176,12 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
               setSel(0);
             }}
           />
-          <kbd
-            style={{
-              fontFamily: "var(--mono)",
-              fontSize: "0.625rem",
-              color: "var(--ink-4)",
-              padding: "2px 6px",
-              border: "1px solid var(--rule)",
-              borderRadius: 3,
-            }}
-          >
-            esc
-          </kbd>
+          <kbd className="palette-esc">esc</kbd>
         </div>
         <div className="palette-results">
           {postResults.length > 0 && (
             <>
-              <div
-                style={{
-                  padding: "6px 12px",
-                  fontFamily: "var(--mono)",
-                  fontSize: "0.625rem",
-                  color: "var(--ink-4)",
-                  letterSpacing: "0.1em",
-                }}
-              >
-                ARTICLES · {postResults.length}
-              </div>
+              <div className="palette-section-label">ARTICLES · {postResults.length}</div>
               {postResults.map((p, i) => (
                 <div
                   key={p.slug}
@@ -210,18 +189,9 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
                   onMouseEnter={() => setSel(i)}
                   onClick={() => run({ type: "post", data: p })}
                 >
-                  <span
-                    style={{
-                      fontFamily: "var(--mono)",
-                      fontSize: "0.6875rem",
-                      color: "var(--accent)",
-                      width: 14,
-                    }}
-                  >
-                    §
-                  </span>
+                  <span className="palette-result-icon palette-result-icon-accent">§</span>
                   <span className="palette-result-title">{p.title}</span>
-                  <span className={`tag ${p.tagId}`} style={{ fontSize: "0.625rem" }}>
+                  <span className={`tag ${p.tagId} palette-result-tag`}>
                     {p.tagLabel}
                   </span>
                   <span className="palette-result-meta">{p.readTime}m</span>
@@ -231,15 +201,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
           )}
           {cmdResults.length > 0 && (
             <>
-              <div
-                style={{
-                  padding: "12px 12px 6px",
-                  fontFamily: "var(--mono)",
-                  fontSize: "0.625rem",
-                  color: "var(--ink-4)",
-                  letterSpacing: "0.1em",
-                }}
-              >
+              <div className="palette-section-label palette-section-label-spaced">
                 COMMANDS · {cmdResults.length}
               </div>
               {cmdResults.map((c, i) => {
@@ -251,22 +213,8 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
                     onMouseEnter={() => setSel(idx)}
                     onClick={() => run(c)}
                   >
-                    <span
-                      style={{
-                        fontFamily: "var(--mono)",
-                        fontSize: "0.6875rem",
-                        color: "var(--ink-4)",
-                        width: 14,
-                      }}
-                    >
-                      ›
-                    </span>
-                    <span
-                      className="palette-result-title"
-                      style={{ fontFamily: "var(--mono)", fontSize: "0.8125rem" }}
-                    >
-                      {c.label}
-                    </span>
+                    <span className="palette-result-icon">›</span>
+                    <span className="palette-result-title palette-result-title-command">{c.label}</span>
                     {c.hint && <span className="palette-result-meta">{c.hint}</span>}
                   </div>
                 );
@@ -274,17 +222,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
             </>
           )}
           {all.length === 0 && (
-            <div
-              style={{
-                padding: 30,
-                textAlign: "center",
-                fontFamily: "var(--serif)",
-                color: "var(--ink-4)",
-                fontSize: "0.875rem",
-              }}
-            >
-              没有匹配的结果
-            </div>
+            <div className="palette-empty">没有匹配的结果</div>
           )}
         </div>
         <div className="palette-foot">
@@ -297,7 +235,7 @@ export function SearchPalette({ posts }: SearchPaletteProps) {
           <span>
             <kbd>esc</kbd>close
           </span>
-          <span style={{ marginLeft: "auto" }}>frendguo.com search</span>
+          <span className="palette-foot-label">frendguo.com search</span>
         </div>
       </div>
     </div>

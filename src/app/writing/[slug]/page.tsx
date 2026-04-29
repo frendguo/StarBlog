@@ -5,6 +5,8 @@ import { fmtDate } from "@/lib/format";
 import { extractToc, renderMarkdown } from "@/lib/markdown";
 import { getAllPosts, getApprovedComments, getPostBySlug } from "@/lib/posts";
 import { ArticleProgress } from "../_components/ArticleProgress";
+import { ArticleBottomBar } from "../_components/ArticleBottomBar";
+import { ArticleMobileTools } from "../_components/ArticleMobileTools";
 import { CommentSection } from "../_components/CommentSection";
 import { TocSidebar } from "../_components/TocSidebar";
 
@@ -51,127 +53,54 @@ export default async function ArticlePage({ params }: Params) {
   return (
     <div>
       <ArticleProgress />
+      <ArticleBottomBar hasToc={toc.length > 0} />
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 720px) 220px",
-          gap: 48,
-          padding: "56px 48px 120px",
-          maxWidth: 1040,
-          margin: "0 auto",
-          justifyContent: "center",
-        }}
-      >
-        <article style={{ minWidth: 0 }}>
-          <div
-            style={{
-              marginBottom: 24,
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              flexWrap: "wrap",
-            }}
-          >
+      <div className="article-layout">
+        <article id="article-body" className="article-main">
+          <ArticleMobileTools hasToc={toc.length > 0} />
+          <div className="article-tag-row">
             <span className={`tag ${post.tagId}`}>{post.tagLabel}</span>
             {post.series && (
-              <span
-                style={{
-                  fontFamily: "var(--mono)",
-                  fontSize: "0.6875rem",
-                  color: "var(--ink-3)",
-                  letterSpacing: "0.05em",
-                }}
-              >
+              <span className="article-series">
                 SERIES · {post.series}
               </span>
             )}
-            <span
-              style={{
-                fontFamily: "var(--mono)",
-                fontSize: "0.6875rem",
-                color: "var(--ink-4)",
-              }}
-            >
+            <span className="article-date">
               {post.publishedAt ? fmtDate(post.publishedAt) : ""}
             </span>
           </div>
 
-          <h1
-            style={{
-              fontFamily: "var(--serif)",
-              fontSize: "2.25rem",
-              fontWeight: 600,
-              lineHeight: 1.15,
-              letterSpacing: "-0.025em",
-              color: "var(--ink)",
-              marginBottom: 18,
-              textWrap: "pretty",
-            }}
-          >
-            {post.title}
-          </h1>
+          <h1 className="article-title">{post.title}</h1>
 
-          <p
-            style={{
-              fontFamily: "var(--serif)",
-              fontSize: "1.0625rem",
-              fontStyle: "italic",
-              lineHeight: 1.55,
-              color: "var(--ink-3)",
-              marginBottom: 28,
-              paddingLeft: 14,
-              borderLeft: "2px solid var(--rule)",
-            }}
-          >
-            {post.excerpt}
-          </p>
+          <p className="article-excerpt">{post.excerpt}</p>
 
-          <div
-            style={{
-              display: "flex",
-              gap: 24,
-              padding: "14px 0",
-              borderTop: "1px solid var(--rule)",
-              borderBottom: "1px solid var(--rule)",
-              fontFamily: "var(--mono)",
-              fontSize: "0.6875rem",
-              color: "var(--ink-3)",
-              marginBottom: 56,
-              flexWrap: "wrap",
-            }}
-          >
+          <div className="article-meta">
             <span>⌖ {post.readTime} min read</span>
             <span>≡ {post.words.toLocaleString()} words</span>
             <span>↺ updated {fmtDate(post.updatedAt)}</span>
           </div>
+
+          {toc.length > 0 && (
+            <div id="article-toc" className="article-toc-inline">
+              <div className="article-toc-label">目录</div>
+              <div className="article-toc-inline-list">
+                {toc.map((item) => (
+                  <Link key={item.id} href={`#${item.id}`} className="article-toc-inline-link">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div
             className="prose"
             dangerouslySetInnerHTML={{ __html: html }}
           />
 
-          <div
-            style={{
-              marginTop: 64,
-              paddingTop: 24,
-              borderTop: "1px solid var(--rule)",
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "var(--mono)",
-                fontSize: "0.6875rem",
-                color: "var(--ink-4)",
-                letterSpacing: "0.06em",
-              }}
-            >
-              ── END ──
-            </span>
-            <div style={{ flex: 1 }} />
+          <div className="article-actions">
+            <span className="article-actions-label">── END ──</span>
+            <div className="article-actions-spacer" />
             <Link href="#top" className="btn">
               ↑ Back to top
             </Link>
@@ -180,41 +109,14 @@ export default async function ArticlePage({ params }: Params) {
             </Link>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 16,
-              marginTop: 32,
-            }}
-          >
+          <div className="article-pagination">
             {prev ? (
               <Link
                 href={`/writing/${prev.slug}`}
-                className="card"
-                style={{ cursor: "pointer", textDecoration: "none" }}
+                className="card article-pagination-card"
               >
-                <div
-                  style={{
-                    fontFamily: "var(--mono)",
-                    fontSize: "0.625rem",
-                    color: "var(--ink-4)",
-                    marginBottom: 6,
-                    letterSpacing: "0.1em",
-                  }}
-                >
-                  ← NEWER
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--serif)",
-                    fontSize: "0.9375rem",
-                    color: "var(--ink)",
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {prev.title}
-                </div>
+                <div className="article-pagination-label">← NEWER</div>
+                <div className="article-pagination-title">{prev.title}</div>
               </Link>
             ) : (
               <div />
@@ -222,34 +124,10 @@ export default async function ArticlePage({ params }: Params) {
             {next ? (
               <Link
                 href={`/writing/${next.slug}`}
-                className="card"
-                style={{
-                  cursor: "pointer",
-                  textAlign: "right",
-                  textDecoration: "none",
-                }}
+                className="card article-pagination-card article-pagination-card-next"
               >
-                <div
-                  style={{
-                    fontFamily: "var(--mono)",
-                    fontSize: "0.625rem",
-                    color: "var(--ink-4)",
-                    marginBottom: 6,
-                    letterSpacing: "0.1em",
-                  }}
-                >
-                  OLDER →
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--serif)",
-                    fontSize: "0.9375rem",
-                    color: "var(--ink)",
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {next.title}
-                </div>
+                <div className="article-pagination-label">OLDER →</div>
+                <div className="article-pagination-title">{next.title}</div>
               </Link>
             ) : (
               <div />
@@ -259,7 +137,7 @@ export default async function ArticlePage({ params }: Params) {
           <CommentSection postId={post.id} initialComments={comments} />
 
           {related.length > 0 && (
-            <div style={{ marginTop: 56 }}>
+            <div className="article-related">
               <div className="section-label">
                 <span>≈</span> Related on {post.tagLabel}
               </div>
@@ -267,27 +145,9 @@ export default async function ArticlePage({ params }: Params) {
                 <Link
                   key={r.slug}
                   href={`/writing/${r.slug}`}
-                  style={{
-                    display: "flex",
-                    gap: 16,
-                    padding: "12px 0",
-                    borderBottom: "1px dashed var(--rule)",
-                    cursor: "pointer",
-                    fontFamily: "var(--serif)",
-                    fontSize: "1rem",
-                    color: "var(--ink-2)",
-                    textDecoration: "none",
-                  }}
+                  className="article-related-row"
                 >
-                  <span
-                    style={{
-                      fontFamily: "var(--mono)",
-                      fontSize: "0.6875rem",
-                      color: "var(--ink-4)",
-                      flexShrink: 0,
-                      width: 60,
-                    }}
-                  >
+                  <span className="article-related-date">
                     {r.publishedAt
                       ? new Date(r.publishedAt).toLocaleDateString("en-US", {
                           month: "short",
@@ -295,23 +155,15 @@ export default async function ArticlePage({ params }: Params) {
                         })
                       : ""}
                   </span>
-                  <span style={{ flex: 1 }}>{r.title}</span>
-                  <span
-                    style={{
-                      fontFamily: "var(--mono)",
-                      fontSize: "0.6875rem",
-                      color: "var(--ink-4)",
-                    }}
-                  >
-                    {r.readTime}m →
-                  </span>
+                  <span className="article-related-title">{r.title}</span>
+                  <span className="article-related-meta">{r.readTime}m →</span>
                 </Link>
               ))}
             </div>
           )}
         </article>
 
-        <aside style={{ position: "relative" }}>
+        <aside className="article-sidebar">
           <TocSidebar items={toc} />
         </aside>
       </div>
