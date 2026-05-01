@@ -1,0 +1,105 @@
+playwright.config.ts
+  f3cdc123782cdc2f 1-43
+tests/e2e/fixtures/test-data.ts
+  f3cdc123782cdc2f 1-12
+tests/e2e/public/smoke.spec.ts
+  f3cdc123782cdc2f 1-31
+tests/e2e/.env.example
+  f3cdc123782cdc2f 1-18
+tests/e2e/fixtures/db.ts
+  f3cdc123782cdc2f 1-126
+tests/e2e/fixtures/auth.ts
+  f3cdc123782cdc2f 1-18
+tests/e2e/admin/auth-login.spec.ts
+  f3cdc123782cdc2f 1-48
+tests/e2e/public/writing.spec.ts
+  f3cdc123782cdc2f 1-46
+tests/e2e/public/comments.spec.ts
+  f3cdc123782cdc2f 1-34
+tests/e2e/global.teardown.ts
+  f3cdc123782cdc2f 1-10
+tests/e2e/admin/comments-mod.spec.ts
+  f3cdc123782cdc2f 1-43
+.github/workflows/e2e.yml
+  f3cdc123782cdc2f 1-69
+.gitignore
+  f3cdc123782cdc2f 59-65
+  ea5770f4bc930909 56-58
+package.json
+  f3cdc123782cdc2f 21-25
+eslint.config.mjs
+  f3cdc123782cdc2f 13-21
+tests/e2e/public/home.spec.ts
+  f3cdc123782cdc2f 1-55
+tests/e2e/global.setup.ts
+  f3cdc123782cdc2f 1-40
+tests/e2e/admin/posts-crud.spec.ts
+  f3cdc123782cdc2f 1-53
+tests/e2e/public/rss.spec.ts
+  f3cdc123782cdc2f 1-34
+tests/e2e/admin/posts-list.spec.ts
+  f3cdc123782cdc2f 1-29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.11",
+  "base_commit_sha": "04b6e85a6e09174eb90c0dc675a254e7da1140bf",
+  "prompts": {
+    "328675acc02cd770": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "05edd174-0966-48ce-a2e1-282cf0fe42f8",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 7,
+      "total_deletions": 5,
+      "accepted_lines": 5,
+      "overriden_lines": 1,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/a54f841a46a56ddc19e217aa8784becfc333c6b5e54b7f39a8e2ba2b7f891c20"
+    },
+    "e5dbe7b4eacad21b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "48eb04ee-7d92-4a07-883f-86643f4db075",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 4236,
+      "total_deletions": 3464,
+      "accepted_lines": 4220,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/9d395d708fc99cff6a5f402da7e7c8d9a68634cc3708be3f746b4e372d1c6fbb"
+    },
+    "ea5770f4bc930909": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5f1a8963-5fad-43c6-9c30-3f249668a3e9",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 3,
+      "total_deletions": 0,
+      "accepted_lines": 3,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/efe20df419e619ea2c7cf9eda06810f028f31c6ae3a2ce0bf89eed2ed6ea0a6e"
+    },
+    "f3cdc123782cdc2f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2fb74ed0-ef75-4f96-9e32-d55b8662db6f",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 824,
+      "total_deletions": 96,
+      "accepted_lines": 730,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/1b1e6ac447f0d7e16b986376cc6bdf350b04fca65d2cb79dda73df2e32485bbe"
+    }
+  }
+}
