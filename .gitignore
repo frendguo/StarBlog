@@ -53,3 +53,13 @@ cloudflare-env.d.ts
 # design handoff bundle (kept locally, not tracked)
 .design/
 .codex-screenshots/**
+
+# wanman takeover overlay
+.wanman/
+
+# Playwright e2e
+test-results/
+playwright-report/
+playwright/.cache/
+tests/e2e/.auth/
+

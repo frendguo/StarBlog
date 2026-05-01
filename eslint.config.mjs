@@ -10,6 +10,14 @@ const compat = new FlatCompat({ baseDirectory: __dirname });
 export default [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
-    ignores: [".next/**", ".open-next/**", "node_modules/**", ".design/**"],
+    ignores: [
+      ".next/**",
+      ".open-next/**",
+      "node_modules/**",
+      ".design/**",
+      "tests/e2e/**",
+      "playwright-report/**",
+      "test-results/**",
+    ],
   },
 ];

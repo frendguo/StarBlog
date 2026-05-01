@@ -1,0 +1,69 @@
+name: e2e
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  p0:
+    name: P0 e2e (chromium)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      WRANGLER_SEND_METRICS: "false"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install chromium --with-deps
+
+      - name: Generate cloudflare-env.d.ts
+        run: pnpm cf-typegen
+
+      - name: Write .dev.vars (e2e-test-pass admin)
+        run: |
+          cat > .dev.vars <<EOF
+          ADMIN_USERNAME=admin
+          ADMIN_PASSWORD_HASH=pbkdf2\$100000\$KsQrcs/IPiyxwi+MssCLHA==\$qOcLgDK+TzvO2p+HmGj8kircfHwo9353L98yJP6gyQA=
+          AUTH_SECRET=ci-secret-${{ github.run_id }}-${{ github.run_attempt }}
+          SITE_URL=http://localhost:3001
+          EOF
+
+      - name: Apply D1 migrations to local sqlite
+        run: pnpm exec wrangler d1 migrations apply starblog-db --local
+
+      - name: Generate seed.sql
+        run: pnpm gen:seed
+
+      - name: Run P0 e2e suite
+        run: pnpm test:e2e:p0
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
