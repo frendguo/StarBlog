@@ -44,11 +44,14 @@ export function TopNav() {
 
   const onToggle = () => {
     const next = theme === "light" ? "dark" : "light";
+    const root = document.documentElement;
+    root.classList.add("theme-switching");
     setTheme(next);
-    document.documentElement.dataset.theme = next;
+    root.dataset.theme = next;
     try {
       localStorage.setItem("theme", next);
     } catch {}
+    window.setTimeout(() => root.classList.remove("theme-switching"), 60);
   };
 
   const isActive = (href: string) =>

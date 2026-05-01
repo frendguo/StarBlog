@@ -52,7 +52,7 @@ export default async function WritingIndex({ searchParams }: SearchParams) {
         totalCount={allPosts.length}
       />
 
-      {years.map((year) => (
+      {years.map((year, yIdx) => (
         <div key={year} className="writing-year">
           <div className="writing-year-head">
             <h3
@@ -79,41 +79,47 @@ export default async function WritingIndex({ searchParams }: SearchParams) {
             </span>
           </div>
           <div className="writing-list">
-            {byYear[year].map((p) => (
-              <a
-                key={p.slug}
-                href={`/writing/${p.slug}`}
-                className="writing-row"
-              >
-                <div className="writing-row-date">
-                  {p.publishedAt ? fmtMonthDay(p.publishedAt) : ""}
-                </div>
-                <div className="writing-row-main">
-                  <div className="writing-row-title">
-                    {p.pinned && (
-                      <span style={{ color: "var(--accent)", marginRight: 6 }}>
-                        ★
-                      </span>
+            {byYear[year].map((p, pIdx) => {
+              const isHero = yIdx === 0 && pIdx === 0;
+              return (
+                <a
+                  key={p.slug}
+                  href={`/writing/${p.slug}`}
+                  className={`writing-row${isHero ? " writing-row-hero" : ""}`}
+                >
+                  <div className="writing-row-date">
+                    {p.publishedAt ? fmtMonthDay(p.publishedAt) : ""}
+                  </div>
+                  <div className="writing-row-main">
+                    <div className="writing-row-title">
+                      {p.pinned && (
+                        <span style={{ color: "var(--accent)", marginRight: 6 }}>
+                          ★
+                        </span>
+                      )}
+                      {p.title}
+                    </div>
+                    {isHero && (
+                      <p className="writing-row-excerpt">{p.excerpt}</p>
                     )}
-                    {p.title}
+                    <div className="writing-row-meta">
+                      <span>{p.publishedAt ? fmtMonthDay(p.publishedAt) : ""}</span>
+                      <span>{p.readTime} min</span>
+                      <span>{p.tagLabel}</span>
+                    </div>
                   </div>
-                  <div className="writing-row-meta">
-                    <span>{p.publishedAt ? fmtMonthDay(p.publishedAt) : ""}</span>
-                    <span>{p.readTime} min</span>
-                    <span>{p.tagLabel}</span>
+                  <div className="writing-row-tag-wrap">
+                    <span className={`tag ${p.tagId}`}>{p.tagLabel}</span>
                   </div>
-                </div>
-                <div className="writing-row-tag-wrap">
-                  <span className={`tag ${p.tagId}`}>{p.tagLabel}</span>
-                </div>
-                <div className="writing-row-readtime">
-                  {p.readTime} min
-                </div>
-                <div className="writing-row-thumb" aria-hidden="true">
-                  <span>{p.tagLabel.slice(0, 2)}</span>
-                </div>
-              </a>
-            ))}
+                  <div className="writing-row-readtime">
+                    {p.readTime} min
+                  </div>
+                  <div className="writing-row-thumb" aria-hidden="true">
+                    <span>{p.tagLabel.slice(0, 2)}</span>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       ))}

@@ -29,6 +29,11 @@ function rehypeFigure() {
       const figures: Element[] = meaningful.map((img) => {
         const altRaw = img.properties?.alt;
         const alt = typeof altRaw === "string" ? altRaw.trim() : "";
+        const props = (img.properties ??= {});
+        const cls = Array.isArray(props.className) ? [...props.className] : [];
+        if (!cls.includes("prose-img-zoomable")) cls.push("prose-img-zoomable");
+        props.className = cls;
+        if (alt && !props.title) props.title = alt;
         const children: ElementContent[] = [img];
         if (alt) {
           children.push({
@@ -49,6 +54,69 @@ function rehypeFigure() {
               properties: { className: ["prose-figure-row"] },
               children: figures,
             };
+    });
+  };
+}
+
+function rehypeCodeChrome() {
+  return (tree: Root) => {
+    visit(tree, "element", (node, index, parent) => {
+      if (node.tagName !== "pre" || !parent || index === undefined) return;
+      if (
+        parent.type === "element" &&
+        (parent as Element).tagName === "figure" &&
+        Array.isArray((parent as Element).properties?.className) &&
+        ((parent as Element).properties!.className as string[]).includes("code-block")
+      ) return;
+
+      let lang = "";
+      const dl = node.properties?.dataLanguage;
+      if (typeof dl === "string") lang = dl;
+      if (!lang) {
+        const code = node.children.find(
+          (c): c is Element => c.type === "element" && c.tagName === "code"
+        );
+        const cls = code?.properties?.className;
+        if (Array.isArray(cls)) {
+          const found = cls.find(
+            (c): c is string => typeof c === "string" && c.startsWith("language-")
+          );
+          if (found) lang = found.slice("language-".length);
+        }
+      }
+      if (!lang || lang === "plaintext") lang = "text";
+
+      const head: Element = {
+        type: "element",
+        tagName: "div",
+        properties: { className: ["code-block-head"] },
+        children: [
+          {
+            type: "element",
+            tagName: "span",
+            properties: { className: ["code-block-lang"] },
+            children: [{ type: "text", value: lang }],
+          },
+          {
+            type: "element",
+            tagName: "button",
+            properties: {
+              type: "button",
+              className: ["code-block-copy"],
+              "data-copy-code": "",
+              "aria-label": "Copy code",
+            },
+            children: [{ type: "text", value: "Copy" }],
+          },
+        ],
+      };
+      const figure: Element = {
+        type: "element",
+        tagName: "figure",
+        properties: { className: ["code-block"] },
+        children: [head, node],
+      };
+      parent.children[index] = figure;
     });
   };
 }
@@ -98,6 +166,7 @@ async function getProcessor() {
       defaultLanguage: "plaintext",
       fallbackLanguage: "plaintext",
     })
+    .use(rehypeCodeChrome)
     .use(rehypeSlug)
     .use(rehypeAutolinkHeadings, {
       behavior: "append",

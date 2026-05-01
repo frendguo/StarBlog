@@ -28,6 +28,7 @@ export default function AboutPage() {
             <span>⌘ 2018 加入开发</span>
           </div>
         </div>
+        <span className="about-signature" aria-hidden="true">{siteConfig.author.name}</span>
       </div>
 
       <div className="prose" style={{ maxWidth: "none" }}>

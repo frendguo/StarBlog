@@ -8,6 +8,7 @@ import { ArticleProgress } from "../_components/ArticleProgress";
 import { ArticleBottomBar } from "../_components/ArticleBottomBar";
 import { ArticleMobileTools } from "../_components/ArticleMobileTools";
 import { CommentSection } from "../_components/CommentSection";
+import { ProseEnhancer } from "../_components/ProseEnhancer";
 import { TocSidebar } from "../_components/TocSidebar";
 
 interface Params {
@@ -53,6 +54,7 @@ export default async function ArticlePage({ params }: Params) {
   return (
     <div>
       <ArticleProgress />
+      <ProseEnhancer />
       <ArticleBottomBar hasToc={toc.length > 0} />
 
       <div className="article-layout">

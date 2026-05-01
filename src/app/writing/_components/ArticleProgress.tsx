@@ -19,14 +19,15 @@ export function ArticleProgress() {
 
   return (
     <div
+      aria-hidden="true"
       style={{
         position: "fixed",
         top: 0,
         left: 0,
         right: 0,
-        height: 2,
+        height: 3,
         background: "transparent",
-        zIndex: 50,
+        zIndex: 60,
         pointerEvents: "none",
       }}
     >
@@ -34,7 +35,8 @@ export function ArticleProgress() {
         style={{
           height: "100%",
           width: `${pct}%`,
-          background: "var(--accent)",
+          background: "linear-gradient(90deg, var(--accent) 0%, #FF9F43 100%)",
+          boxShadow: "0 0 6px rgba(255,87,34,.45)",
           transition: "width .1s linear",
         }}
       />

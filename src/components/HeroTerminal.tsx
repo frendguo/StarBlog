@@ -7,6 +7,8 @@ interface Props {
   nowSummary: string;
 }
 
+const SEEN_KEY = "starblog_term_played";
+
 export function HeroTerminal({ postCount, nowSummary }: Props) {
   const lines = [
     { p: "~/blog", cmd: "whoami" },
@@ -18,12 +20,29 @@ export function HeroTerminal({ postCount, nowSummary }: Props) {
   ];
 
   const [idx, setIdx] = useState(0);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (idx >= lines.length) return;
+    try {
+      if (sessionStorage.getItem(SEEN_KEY) === "1") {
+        setIdx(lines.length);
+        setDone(true);
+        return;
+      }
+    } catch {}
+  }, [lines.length]);
+
+  useEffect(() => {
+    if (idx >= lines.length) {
+      if (!done) {
+        setDone(true);
+        try { sessionStorage.setItem(SEEN_KEY, "1"); } catch {}
+      }
+      return;
+    }
     const t = setTimeout(() => setIdx((i) => i + 1), 700);
     return () => clearTimeout(t);
-  }, [idx, lines.length]);
+  }, [idx, lines.length, done]);
 
   return (
     <div style={{ position: "relative", zIndex: 1 }}>
@@ -46,7 +65,7 @@ export function HeroTerminal({ postCount, nowSummary }: Props) {
               </div>
             )
           )}
-          {idx < lines.length && <span className="cursor" />}
+          {(idx < lines.length || done) && <span className="cursor" />}
         </div>
       </div>
     </div>

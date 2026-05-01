@@ -55,8 +55,11 @@ export default async function HomePage() {
             的文字。
           </h1>
           <p className="hero-lede">
-            我是一个软件工程师，专注于 C++ 和 Windows 平台。 这里记录我的调试日记、源码拆解，
-            以及最近开始痴迷的 AI 工程化 — 慢但认真，每周大约一篇。
+            我是一个软件工程师，专注于 C++ 和 Windows 平台。
+          </p>
+          <p className="hero-manifesto">
+            <span className="hero-manifesto-slash">{"//"}</span>{" "}
+            调试日记 · 源码拆解 · AI 工程化 — 慢但认真，每周大约一篇。
           </p>
           <div className="hero-cta">
             <Link className="btn btn-primary" href="/writing">
@@ -70,11 +73,38 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="home-quick-jump">
-            <Link href="#featured" className="home-quick-link">精选文章</Link>
-            <Link href="#recent" className="home-quick-link">最近更新</Link>
-            <Link href="/writing" className="home-quick-link">全部文章</Link>
-            <Link href="/writing" className="home-quick-link">长文阅读</Link>
+          <div className="home-feature-row">
+            {featured && (
+              <Link href={`/writing/${featured.slug}`} className="home-feature-card">
+                <div className="home-feature-eyebrow">
+                  <span style={{ color: "var(--accent)" }}>★</span> 最新这篇
+                </div>
+                <div className="home-feature-title">{featured.title}</div>
+                <div className="home-feature-foot">
+                  <span>
+                    {featured.readTime} min · {featured.tagLabel}
+                  </span>
+                  <span>↗</span>
+                </div>
+              </Link>
+            )}
+            <div className="home-feature-card home-feature-topics">
+              <div className="home-feature-eyebrow">
+                <span>#</span> 按主题
+              </div>
+              <div className="home-feature-tags">
+                {tags.map((t) => (
+                  <Link
+                    key={t.id}
+                    href={`/writing?tag=${t.id}`}
+                    className={`tag ${t.id}`}
+                  >
+                    #{t.label}
+                    <span style={{ marginLeft: 4, opacity: 0.55 }}>{t.count}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
           </div>
@@ -180,6 +210,17 @@ export default async function HomePage() {
           </Link>
         </section>
       )}
+
+      {/* BREAK — full-width pull quote for cadence */}
+      <section className="home-break" aria-hidden="true">
+        <div className="home-break-inner">
+          <div className="home-break-mark">¶</div>
+          <p className="home-break-quote">
+            &ldquo;离金属比较近的工作让你不得不诚实 — 内存就是内存，指令周期就是指令周期。&rdquo;
+          </p>
+          <div className="home-break-cite">— 摘自 /about</div>
+        </div>
+      </section>
 
       {/* RECENT */}
       <section id="recent" className="home-section">
