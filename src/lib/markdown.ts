@@ -4,6 +4,7 @@ import type { Element, ElementContent, Root } from "hast";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
+import remarkCjkFriendly from "remark-cjk-friendly";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
@@ -12,6 +13,55 @@ import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 import type { Processor } from "unified";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
+
+// Page renders the article title as <h1>, so body should never start at h1.
+// Detect the shallowest heading the author wrote and shift the whole document
+// down just enough to make h2 the top section level, keeping relative depth
+// intact. Posts that already start at h2 are left alone.
+function rehypeShiftHeadings() {
+  return (tree: Root) => {
+    let minLevel = 7;
+    visit(tree, "element", (node) => {
+      const m = /^h([1-6])$/.exec(node.tagName);
+      if (m) {
+        const lv = Number(m[1]);
+        if (lv < minLevel) minLevel = lv;
+      }
+    });
+    if (minLevel >= 2 || minLevel > 6) return;
+    const shift = 2 - minLevel;
+    visit(tree, "element", (node) => {
+      const m = /^h([1-6])$/.exec(node.tagName);
+      if (!m) return;
+      const next = Math.min(6, Number(m[1]) + shift);
+      node.tagName = `h${next}`;
+    });
+  };
+}
+
+// Derive a fallback alt for empty <img alt=""> so screen readers and SEO get
+// something useful. Strategy: 1) take preceding text in same parent if short
+// enough; 2) otherwise file stem; 3) otherwise "插图".
+function rehypeImgAltFallback() {
+  return (tree: Root) => {
+    visit(tree, "element", (node, index, parent) => {
+      if (node.tagName !== "img" || !parent || index === undefined) return;
+      const props = (node.properties ??= {});
+      const altRaw = props.alt;
+      const alt = typeof altRaw === "string" ? altRaw.trim() : "";
+      if (alt) return;
+      let derived = "";
+      const src = typeof props.src === "string" ? props.src : "";
+      if (src) {
+        const stem = src.split("?")[0].split("#")[0].split("/").pop() ?? "";
+        const noExt = stem.replace(/\.[a-z0-9]+$/i, "");
+        if (noExt && !/^image[-_]?\d+([-_]\d+x\d+)?$/i.test(noExt)) derived = noExt;
+      }
+      if (!derived) derived = "插图";
+      props.alt = derived;
+    });
+  };
+}
 
 function rehypeFigure() {
   return (tree: Root) => {
@@ -34,8 +84,11 @@ function rehypeFigure() {
         if (!cls.includes("prose-img-zoomable")) cls.push("prose-img-zoomable");
         props.className = cls;
         if (alt && !props.title) props.title = alt;
+        // Only emit a figcaption when the alt looks like real prose (has space
+        // or CJK), not when it's just a filename fallback.
+        const showCaption = alt.length > 0 && /[一-鿿\s]/.test(alt) && alt !== "插图";
         const children: ElementContent[] = [img];
-        if (alt) {
+        if (showCaption) {
           children.push({
             type: "element",
             tagName: "figcaption",
@@ -158,8 +211,11 @@ async function getProcessor() {
   }
   processor = unified()
     .use(remarkParse)
+    .use(remarkCjkFriendly)
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: false })
+    .use(rehypeShiftHeadings)
+    .use(rehypeImgAltFallback)
     .use(rehypeFigure)
     .use(rehypeShikiFromHighlighter, highlighter as Parameters<typeof rehypeShikiFromHighlighter>[0], {
       themes: { light: "github-light", dark: "github-dark-dimmed" },
@@ -191,15 +247,45 @@ export interface TocItem {
 }
 
 /**
- * Extract H2/H3 headings into a flat TOC, mirroring rehype-slug's slug logic.
+ * Extract top-level headings into a flat TOC, mirroring rehype-slug's slug logic
+ * and rehypeShiftHeadings's smart shift: the document is shifted so the
+ * shallowest heading lands on h2; deeper levels follow proportionally. Fenced
+ * code blocks are skipped to avoid picking up `# comment` lines as headings.
  */
 export function extractToc(body: string): TocItem[] {
+  // First pass: find the shallowest heading level (mirrors the rehype plugin).
+  const lines = body.split("\n");
+  let inFence = false;
+  let minLevel = 7;
+  for (const raw of lines) {
+    if (/^\s*```/.test(raw)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    const m = /^(#{1,6})\s+\S/.exec(raw);
+    if (!m) continue;
+    if (m[1].length < minLevel) minLevel = m[1].length;
+  }
+  const shift = minLevel < 2 ? 2 - minLevel : 0;
+
+  // Second pass: emit only the top two rendered levels (h2 + h3) for the TOC,
+  // which after the shift correspond to source depths `minLevel` and
+  // `minLevel + 1` (or 1 and 2 when nothing was shallower than h2).
+  const topSourceMax = (2 - shift) + 1;
   const items: TocItem[] = [];
   const used = new Set<string>();
-  const re = /^(#{2,3})\s+(.+?)\s*$/gm;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(body))) {
-    const depth = m[1].length;
+  inFence = false;
+  for (const raw of lines) {
+    if (/^\s*```/.test(raw)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    const m = /^(#{1,6})\s+(.+?)\s*$/.exec(raw);
+    if (!m) continue;
+    const sourceDepth = m[1].length;
+    if (sourceDepth > topSourceMax) continue;
     const label = m[2].replace(/\s*\{#[^}]+\}\s*$/, "").trim();
     let id = label
       .toLowerCase()
@@ -212,7 +298,7 @@ export function extractToc(body: string): TocItem[] {
       unique = `${id}-${n++}`;
     }
     used.add(unique);
-    items.push({ id: unique, label, depth });
+    items.push({ id: unique, label, depth: sourceDepth + shift });
   }
   return items;
 }

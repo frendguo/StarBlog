@@ -2153,11 +2153,11 @@ a.home-feature-card:hover {
 }
 .toc-mobile-toggle { display: none; }
 .toc-desktop-list,
-.toc-mobile-panel,
 .toc-utility-list {
   display: flex;
   flex-direction: column;
 }
+.toc-mobile-panel { display: none; }
 .toc-desktop-list { gap: 4px; }
 .toc-item {
   font-size: 0.75rem;
