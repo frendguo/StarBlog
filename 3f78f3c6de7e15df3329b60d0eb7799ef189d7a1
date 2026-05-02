@@ -1,0 +1,42 @@
+package.json
+  899f05585349019e 38
+src/lib/markdown.ts
+  899f05585349019e 7,17-65,87-89,91,214,217-218,250-253,256-275,278-288,301
+src/styles/global.css
+  335fcb055a26bd50 2160
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.11",
+  "base_commit_sha": "3f78f3c6de7e15df3329b60d0eb7799ef189d7a1",
+  "prompts": {
+    "335fcb055a26bd50": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4c913fc9-09f0-43a2-99d0-34aa52747fa2",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 2591,
+      "total_deletions": 3170,
+      "accepted_lines": 2591,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/8018436340ca1a9394824eeb45f971e98b44e7c68fa508c51f643f628090f821"
+    },
+    "899f05585349019e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c823978-91d8-4fe9-a543-36d255f28353",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 30749,
+      "total_deletions": 4714,
+      "accepted_lines": 25551,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/90a9d581e5bca4f9f9e2bd53e2aa1ce1e27a937369ad01c030566f0c24493f4f"
+    }
+  }
+}
