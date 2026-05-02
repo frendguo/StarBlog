@@ -92,6 +92,39 @@ drizzle/
 .design/                      # 原始设计稿包（git ignored）
 ```
 
+## 测试
+
+仓库通过 **Playwright e2e 套件** 来守住业务逻辑回归，仓库内不再维护 Jest / Vitest 单元测试框架。
+
+```powershell
+pnpm test:e2e        # 全量 chromium e2e
+pnpm test:e2e:p0     # 只跑 @P0 标签用例（CI 入口）
+pnpm test:e2e:ui     # Playwright UI mode 调试
+pnpm test:e2e:debug  # inspector 单步调试
+```
+
+目录结构：
+
+```
+tests/e2e/
+├─ admin/              # 后台用例（登录 / middleware 守卫 / 文章 CRUD / 评论审核）
+├─ public/             # 公开站用例（smoke / 首页 / Writing 列表+详情 / RSS / 评论提交）
+├─ fixtures/           # 共享夹具（auth · db · test-data）
+├─ global.setup.ts     # apply seed.sql + 清残留 + 插 fixture posts + 缓存 admin storageState
+└─ global.teardown.ts  # 清理 [E2E] / e2e- 痕迹
+playwright.config.ts   # webServer 自动起 next dev -p 3001
+```
+
+跑 e2e 前需要：本地 `.dev.vars` 配好 `ADMIN_USERNAME` / `ADMIN_PASSWORD_HASH` / `AUTH_SECRET`、跑过 `pnpm db:migrate:local` 与 `pnpm gen:seed`。`global.setup.ts` 会再 apply 一次 seed.sql 并插入 fixture 文章，本地 D1 里临时的 `e2e-*` slug 会被自动清理。
+
+GitHub Actions：
+
+- `.github/workflows/e2e.yml` — 在 `push main` 与 `workflow_dispatch` 上跑 P0 套件，artifact 留 `playwright-report/` 与 `test-results/` 7 天
+- `.github/workflows/ci.yml` — 跑 lint + build
+- `.github/workflows/deploy.yml` — 自动部署
+
+新写用例先标 `@P1` / `@P2`，稳定后再升 `@P0` 进 CI 主路径。
+
 ## 设计来源
 
 `/.design/blog/project/` 下保留了原始 HTML/CSS/JSX 原型 — 用作视觉对照参考（不在 git 跟踪范围内）。
@@ -109,5 +142,8 @@ drizzle/
 | `pnpm db:migrate:local` / `:remote` | 应用迁移 |
 | `pnpm db:seed:local` / `:remote` | 重灌种子数据 |
 | `pnpm db:studio` | 启动 Drizzle Studio 浏览 D1 |
+| `pnpm test:e2e` | Playwright e2e 全量 |
+| `pnpm test:e2e:p0` | 只跑 @P0 用例（CI 入口） |
+| `pnpm test:e2e:ui` / `:debug` | UI mode / inspector 调试 |
 | `pnpm hash <password>` | 生成 ADMIN_PASSWORD_HASH |
 | `pnpm cf-typegen` | 重新生成 Cloudflare 绑定的 TS 类型 |

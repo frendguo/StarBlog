@@ -20,6 +20,11 @@ pnpm db:migrate:remote      # 应用迁移到生产 D1
 pnpm db:seed:local          # 重新生成并应用 seed.sql 到本地
 pnpm db:studio              # Drizzle Studio Web UI
 
+pnpm test:e2e               # Playwright e2e 全量（chromium）
+pnpm test:e2e:p0            # 只跑 @P0 标签用例（CI 入口）
+pnpm test:e2e:ui            # Playwright UI mode 调试
+pnpm test:e2e:debug         # inspector 单步调试
+
 pnpm hash <password>        # 生成 ADMIN_PASSWORD_HASH
 pnpm cf-typegen             # 重新生成 cloudflare-env.d.ts
 pnpm deploy                 # 部署到生产 Cloudflare Workers（需授权）
@@ -56,12 +61,36 @@ pnpm deploy                 # 部署到生产 Cloudflare Workers（需授权）
 
 ## 测试
 
-**没有测试框架**（这是有意的设计）。验证方式：
+仓库使用 **Playwright e2e 套件**（`tests/e2e/`）作为唯一测试形态——业务逻辑通过端到端用例守住，不再引入 Jest / Vitest 等单元测试框架。
+
+```bash
+pnpm test:e2e              # 跑全部 e2e（chromium）
+pnpm test:e2e:p0           # 只跑 @P0 标签用例（最小回归集，CI 入口）
+pnpm test:e2e:ui           # Playwright UI mode 调试
+pnpm test:e2e:debug        # inspector 单步调试
+```
+
+目录结构：
+
+- `tests/e2e/admin/` — 后台用例：登录、middleware 守卫、文章 CRUD、文章列表、评论审核
+- `tests/e2e/public/` — 公开站用例：smoke、首页、Writing 列表 / 文章详情、RSS、评论提交
+- `tests/e2e/fixtures/` — 共享夹具：`auth.ts`（admin 登录）、`db.ts`（D1 清理 + 种子）、`test-data.ts`（凭证 / 前缀常量）
+- `tests/e2e/global.setup.ts` — 跑前 apply seed.sql + 清空 `e2e-*` 残留 + 注入 fixture posts + 缓存 admin storageState
+- `tests/e2e/global.teardown.ts` — 跑后清理 `[E2E]` / `e2e-` 痕迹
+- `playwright.config.ts` — `webServer` 自动起 `pnpm next dev -p 3001`，CI 下 retries=2、reporter=`github`
+
+跑 e2e 前需要本地 `.dev.vars` 提供 `ADMIN_USERNAME` / `ADMIN_PASSWORD_HASH` / `AUTH_SECRET`，并先跑 `pnpm db:migrate:local`、`pnpm gen:seed`。`global.setup.ts` 会再 apply 一次 seed.sql 然后插入 fixture 文章，所以本地 D1 里临时的 `e2e-*` slug 都会被它清理掉。
+
+**优先级标签约定**：用例描述里加 `@P0` / `@P1` / `@P2`，CI 上的 `pnpm test:e2e:p0` 通过 `--grep @P0` 只跑最小回归集。新写用例先标 P1/P2，跑稳定后再升 @P0 进 CI 主路径。
+
+**CI**：`.github/workflows/e2e.yml` 在 `push main` 与 `workflow_dispatch` 上跑 P0 套件，artifact 留 `playwright-report/` 与 `test-results/` 7 天；`.github/workflows/ci.yml` 跑 lint + build；`.github/workflows/deploy.yml` 自动部署。
+
+其他验证：
 
 - 类型检查 + lint：`pnpm lint && pnpm build`（或 `/verify`）
 - 功能验证：`pnpm dev` 手动点；部署前用 `pnpm preview` 在本地 Cloudflare 模拟环境验证
 
-不要为了"完整性"引入 Jest/Vitest/Playwright，除非用户明确要求。
+不要为"完整性"再引入 Jest / Vitest 单元测试框架，除非用户明确要求。
 
 ## 必需环境变量
 
