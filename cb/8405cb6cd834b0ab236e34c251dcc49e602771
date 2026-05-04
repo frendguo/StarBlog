@@ -1,0 +1,78 @@
+src/app/page.tsx
+  06b36131992cc1d8 455-475
+src/lib/site-config.ts
+  06b36131992cc1d8 16-17
+.github/ISSUE_TEMPLATE/config.yml
+  06b36131992cc1d8 1-5
+.github/ISSUE_TEMPLATE/feature_request.md
+  06b36131992cc1d8 1-31
+CHANGELOG.md
+  06b36131992cc1d8 1-62
+README.md
+  06b36131992cc1d8 8,10-12,92
+.github/ISSUE_TEMPLATE/bug_report.md
+  06b36131992cc1d8 1-36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.11",
+  "base_commit_sha": "cb8405cb6cd834b0ab236e34c251dcc49e602771",
+  "prompts": {
+    "06b36131992cc1d8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "af97f158-f302-402a-810d-973b8201c27c",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 796,
+      "total_deletions": 656,
+      "accepted_lines": 710,
+      "overriden_lines": 13,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/3543b452254449a35ab4cb3ede88e7d9ebb5348afed716d0d0824b680e2a0c8f"
+    },
+    "899f05585349019e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c823978-91d8-4fe9-a543-36d255f28353",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 25455,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/90a9d581e5bca4f9f9e2bd53e2aa1ce1e27a937369ad01c030566f0c24493f4f"
+    },
+    "9308347ca7f681d7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3c61d635-49cd-4f03-ba17-f6fd7e5a7a56",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 2633,
+      "total_deletions": 2596,
+      "accepted_lines": 0,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/0ac3853797ecae2f995b0ea4c4d143358c49c80906b14ccc211f215e825679d6"
+    },
+    "d3238ade21b48cc3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f16a2619-a98e-49d3-982c-ad09d0ad1714",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 70,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/ab88648ede55f0c819a787037fcaf734db50727e715cb94377c88e91426ce38b"
+    }
+  }
+}
