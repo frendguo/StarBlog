@@ -22,6 +22,11 @@ async function gotoFirstArticle(page: import("@playwright/test").Page) {
   await firstArticle.scrollIntoViewIfNeeded();
   await firstArticle.click();
   await expect(page.locator("h1.article-title")).toBeVisible();
+  // Wait for hydration so client-component event handlers (TocSidebar drawer
+  // toggle, etc.) are attached before the test interacts with them. Without
+  // this, the very first click on .toc-mobile-toggle can land before React
+  // hydrates and silently no-op.
+  await page.waitForLoadState("networkidle");
 }
 
 test.describe("article detail @P1", () => {
@@ -116,8 +121,10 @@ test.describe("article detail @P1", () => {
       expect(href, "TOC link href").toMatch(/^#/);
       const id = href!.slice(1);
       // Verify rehypeShiftHeadings (runs before rehypeSlug) didn't desync ids
-      // from the slugs extractToc emitted.
-      const target = page.locator(`#${CSS.escape(id)}`);
+      // from the slugs extractToc emitted. Use an attribute selector to avoid
+      // CSS.escape (browser global, undefined in Node test runtime).
+      const escapedId = id.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+      const target = page.locator(`[id="${escapedId}"]`);
       await expect(
         target,
         `TOC anchor #${id} must resolve to a node in the document`
