@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import {
+  alt as defaultOgAlt,
+  contentType as defaultOgImageType,
+  size as defaultOgImageSize,
+} from "@/app/opengraph-image";
 import { fmtDate } from "@/lib/format";
+import { blogPostingJsonLd, ldJsonString } from "@/lib/jsonld";
 import { extractToc, renderMarkdown } from "@/lib/markdown";
 import { getAllPosts, getApprovedComments, getPostBySlug } from "@/lib/posts";
 import { ArticleProgress } from "../_components/ArticleProgress";
@@ -15,6 +21,14 @@ interface Params {
   params: Promise<{ slug: string }>;
 }
 
+const defaultOgImage = {
+  url: "/opengraph-image",
+  width: defaultOgImageSize.width,
+  height: defaultOgImageSize.height,
+  alt: defaultOgAlt,
+  type: defaultOgImageType,
+} as const;
+
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
@@ -22,12 +36,22 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/writing/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
+      url: `/writing/${post.slug}`,
+      images: [defaultOgImage],
       publishedTime: post.publishedAt?.toISOString(),
       modifiedTime: post.updatedAt.toISOString(),
+      tags: post.tagLabel ? [post.tagLabel] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [defaultOgImage],
     },
   };
 }
@@ -53,6 +77,23 @@ export default async function ArticlePage({ params }: Params) {
 
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: ldJsonString(
+            blogPostingJsonLd({
+              slug: post.slug,
+              title: post.title,
+              excerpt: post.excerpt,
+              publishedAt: post.publishedAt,
+              updatedAt: post.updatedAt,
+              tagLabel: post.tagLabel,
+              readTime: post.readTime,
+              words: post.words,
+            })
+          ),
+        }}
+      />
       <ArticleProgress />
       <ProseEnhancer />
       <ArticleBottomBar hasToc={toc.length > 0} />
