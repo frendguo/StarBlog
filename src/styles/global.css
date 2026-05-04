@@ -2221,12 +2221,29 @@ a.home-feature-card:hover {
     gap: 24px;
     padding-inline: 32px;
   }
-  .article-sidebar { display: none; }
   .article-toc-inline { display: block; }
   .toc-sidebar {
     position: static;
     top: auto;
   }
+}
+
+/* Tablet (768-1023px): hide the entire sidebar — inline TOC at the top of the
+ * article is the only TOC entry. Mobile (≤767px) keeps the sidebar so that
+ * .toc-mobile-toggle / .toc-mobile-panel remain reachable as the drawer UX. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .article-sidebar { display: none; }
+}
+
+/* Mobile (≤767px): hide redundant sidebar utilities (Share / TIP) — the
+ * mobile drawer toggle is the only sidebar surface that should render.
+ * Re-order the layout so the sidebar (drawer toggle) sits above the article,
+ * keeping it clear of the fixed .article-bottom-bar overlay. */
+@media (max-width: 767px) {
+  .article-layout { display: flex; flex-direction: column; }
+  .article-sidebar { order: -1; }
+  .article-sidebar .toc-utility-block,
+  .article-sidebar .toc-tip-card { display: none; }
 }
 
 @media (max-width: 767px) {
