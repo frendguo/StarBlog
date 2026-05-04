@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { fmtDate, fmtMonthDay } from "@/lib/format";
+import { ldJsonString, websiteJsonLd } from "@/lib/jsonld";
 import { getAllPosts, getAllTags } from "@/lib/posts";
 import { siteConfig } from "@/lib/site-config";
 import { HeroCounters } from "@/components/HeroCounters";
@@ -20,6 +21,10 @@ export default async function HomePage() {
 
   return (
     <div className="home-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: ldJsonString(websiteJsonLd()) }}
+      />
       <section className="hero">
         <div
           className="ambient"

@@ -9,6 +9,10 @@
 ### Added
 - 公开站底部 footer 增加 GitHub Issues / 源码链接，并引入 `.github/ISSUE_TEMPLATE/`（bug / feature 两个最小模板 + 邮件 contact link），打开外部反馈通道。
 - README 顶部新增「问题反馈 / Feedback」段落，并指向 `CHANGELOG.md`。
+- 公开站接入 OpenGraph 图片（`src/app/opengraph-image.tsx`，1200×630 静态预渲染品牌图）。
+- 写作详情页注入 `BlogPosting` JSON-LD（含标题、摘要、发布 / 修改时间、作者、关键字、字数与阅读时长）。
+- 首页注入 `WebSite` JSON-LD（站点级实体 + 作者发布者）。
+- 写作详情页 metadata 补充 canonical、OG `url`、`tags` 与 `twitter` summary_large_image card。
 
 ### Changed
 - _(留空)_

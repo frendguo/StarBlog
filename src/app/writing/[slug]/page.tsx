@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fmtDate } from "@/lib/format";
+import { blogPostingJsonLd, ldJsonString } from "@/lib/jsonld";
 import { extractToc, renderMarkdown } from "@/lib/markdown";
 import { getAllPosts, getApprovedComments, getPostBySlug } from "@/lib/posts";
 import { ArticleProgress } from "../_components/ArticleProgress";
@@ -22,12 +23,20 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/writing/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
+      url: `/writing/${post.slug}`,
       publishedTime: post.publishedAt?.toISOString(),
       modifiedTime: post.updatedAt.toISOString(),
+      tags: post.tagLabel ? [post.tagLabel] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
     },
   };
 }
@@ -53,6 +62,23 @@ export default async function ArticlePage({ params }: Params) {
 
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: ldJsonString(
+            blogPostingJsonLd({
+              slug: post.slug,
+              title: post.title,
+              excerpt: post.excerpt,
+              publishedAt: post.publishedAt,
+              updatedAt: post.updatedAt,
+              tagLabel: post.tagLabel,
+              readTime: post.readTime,
+              words: post.words,
+            })
+          ),
+        }}
+      />
       <ArticleProgress />
       <ProseEnhancer />
       <ArticleBottomBar hasToc={toc.length > 0} />
