@@ -13,6 +13,8 @@ export const siteConfig = {
   },
   url: "https://frendguo.com",
   rssUrl: "/feed.xml",
+  repoUrl: "https://github.com/frendguo/StarBlog",
+  issuesUrl: "https://github.com/frendguo/StarBlog/issues",
   newsletterCount: 312,
   yearsWriting: 5,
   keyboardShortcuts: {

@@ -452,9 +452,27 @@ export default async function HomePage() {
       {/* FOOTER */}
       <footer className="home-footer">
         <span>© {new Date().getFullYear()} {siteConfig.author.name} · built with care</span>
-        <span>
-          v3.0 · last deploy <span style={{ color: "var(--accent-3)" }}>●</span>{" "}
-          on Cloudflare
+        <span className="home-footer-links">
+          <a
+            href={siteConfig.issuesUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            反馈 / Issues
+          </a>
+          <span aria-hidden="true">·</span>
+          <a
+            href={siteConfig.repoUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            源码 / GitHub
+          </a>
+          <span aria-hidden="true">·</span>
+          <span>
+            v3.0 · last deploy <span style={{ color: "var(--accent-3)" }}>●</span>{" "}
+            on Cloudflare
+          </span>
         </span>
       </footer>
     </div>

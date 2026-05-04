@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 通过邮件直接联系作者
+    url: mailto:hello@frendguo.com
+    about: 不便公开的反馈、合作、安全相关问题

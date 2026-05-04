@@ -5,6 +5,12 @@
 - **公开站**：Home / Writing / 文章详情 / Projects / Now / About，亮暗双主题、`⌘K` 命令面板、键盘快捷键 `g h/w/p/n/a`、RSS、sitemap。
 - **后台管理 (`/admin`)**：Dashboard、文章 CRUD + Markdown 编辑器、标签管理、评论审核、订阅者导出、站点配置。
 
+## 问题反馈 / Feedback
+
+遇到 bug 或想提建议？欢迎到 [GitHub Issues](https://github.com/frendguo/StarBlog/issues) 开 issue。仓库内提供 `bug 报告` 与 `功能建议` 两个最小模板，按里面的复现步骤 / 预期 / 实际填写即可。
+不便公开的问题（合作、安全相关）可以直接发邮件给 `hello@frendguo.com`。
+版本沿革见 [`CHANGELOG.md`](./CHANGELOG.md)。
+
 ## 技术栈
 
 | 维度 | 选型 |
@@ -83,7 +89,7 @@ src/
 ├─ db/                        # Drizzle schema + getDb() 包装
 ├─ lib/                       # site-config · format · markdown · posts (DAL) · auth · client-events
 ├─ middleware.ts              # /admin/* 守卫
-└─ styles/global.css          # 复刻自设计稿（28 KB CSS 变量化的 design tokens）
+└─ styles/global.css          # 全站样式（CSS 变量 + [data-theme="dark"] 暗色模式，复刻自原始设计稿）
 
 drizzle/
 ├─ migrations/0000_init.sql   # drizzle-kit 自动生成
