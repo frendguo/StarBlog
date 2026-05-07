@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import {
+  alt as defaultOgAlt,
+  contentType as defaultOgImageType,
+  size as defaultOgImageSize,
+} from "@/app/opengraph-image";
 import { fmtDate } from "@/lib/format";
 import { blogPostingJsonLd, ldJsonString } from "@/lib/jsonld";
 import { extractToc, renderMarkdown } from "@/lib/markdown";
@@ -16,6 +21,14 @@ interface Params {
   params: Promise<{ slug: string }>;
 }
 
+const defaultOgImage = {
+  url: "/opengraph-image",
+  width: defaultOgImageSize.width,
+  height: defaultOgImageSize.height,
+  alt: defaultOgAlt,
+  type: defaultOgImageType,
+} as const;
+
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
@@ -29,6 +42,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       description: post.excerpt,
       type: "article",
       url: `/writing/${post.slug}`,
+      images: [defaultOgImage],
       publishedTime: post.publishedAt?.toISOString(),
       modifiedTime: post.updatedAt.toISOString(),
       tags: post.tagLabel ? [post.tagLabel] : undefined,
@@ -37,6 +51,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
+      images: [defaultOgImage],
     },
   };
 }
