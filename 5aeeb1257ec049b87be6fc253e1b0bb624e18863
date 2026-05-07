@@ -1,0 +1,28 @@
+.github/workflows/ci.yml
+  b74127fd35c7c23e 23,26,31
+.github/workflows/deploy.yml
+  b74127fd35c7c23e 25,28,33
+.github/workflows/e2e.yml
+  b74127fd35c7c23e 21,24,26,29,63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.11",
+  "base_commit_sha": "5aeeb1257ec049b87be6fc253e1b0bb624e18863",
+  "prompts": {
+    "b74127fd35c7c23e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "41ea1195-ad26-422e-a030-abdc557c1d02",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "frendguo",
+      "messages": [],
+      "total_additions": 172,
+      "total_deletions": 172,
+      "accepted_lines": 132,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/707f1a36f5bee7d1cbc7594e3b4dd454df52b476cd915b3f2dcf8d0a467f2101"
+    }
+  }
+}
